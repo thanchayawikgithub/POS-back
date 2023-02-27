@@ -14,8 +14,16 @@ export class Product {
   @Column({ length: 64 })
   name: string;
 
+  @Column()
+  type: string;
+
+  @Column()
+  size: string;
+
   @Column({ type: 'float' })
   price: number;
+
+ 
 
   @CreateDateColumn()
   createdAt: Date;
