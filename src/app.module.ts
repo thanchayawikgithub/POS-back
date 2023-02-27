@@ -7,6 +7,8 @@ import { ProductsModule } from './products/products.module';
 import { DataSource } from 'typeorm';
 import { EmployeesModule } from './employees/employees.module';
 import { Employee } from './employees/entities/employee.entity';
+import { CatagorysModule } from './catagorys/catagorys.module';
+import { Catagory } from './catagorys/entities/catagory.entity';
 
 @Module({
   imports: [
@@ -14,11 +16,12 @@ import { Employee } from './employees/entities/employee.entity';
       type: 'sqlite',
       database: 'db.sqlite',
       synchronize: true,
-      entities: [Employee, Product],
+      entities: [Employee, Product, Catagory],
       migrations: [],
     }),
     EmployeesModule,
     ProductsModule,
+    CatagorysModule,
   ],
   controllers: [AppController],
   providers: [AppService],
