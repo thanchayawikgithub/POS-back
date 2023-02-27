@@ -8,34 +8,34 @@ import { Product } from './entities/product.entity';
 @Injectable()
 export class ProductsService {
   constructor(
-    @InjectRepository(Product) private productRrpository: Repository<Product>,
+    @InjectRepository(Product) private productRepository: Repository<Product>,
   ) {}
   create(createProductDto: CreateProductDto) {
-    return this.productRrpository.save(createProductDto);
+    return this.productRepository.save(createProductDto);
   }
 
   findAll() {
-    return this.productRrpository.find();
+    return this.productRepository.find();
   }
 
   findOne(id: number) {
-    return this.productRrpository.findOne({ where: { id } });
+    return this.productRepository.findOne({ where: { id } });
   }
 
   async update(id: number, updateProductDto: UpdateProductDto) {
-    const product = await this.productRrpository.findOneBy({ id });
+    const product = await this.productRepository.findOneBy({ id });
     if (!product) {
       throw new NotFoundException();
     }
     const updatedProduct = { ...product, ...updateProductDto };
-    return this.productRrpository.save(updatedProduct);
+    return this.productRepository.save(updatedProduct);
   }
 
   async remove(id: number) {
-    const product = await this.productRrpository.findOneBy({ id });
+    const product = await this.productRepository.findOneBy({ id });
     if (!product) {
       throw new NotFoundException();
     }
-    return this.productRrpository.softRemove(product);
+    return this.productRepository.softRemove(product);
   }
 }
