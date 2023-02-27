@@ -23,8 +23,6 @@ export class Product {
   @Column({ type: 'float' })
   price: number;
 
- 
-
   @CreateDateColumn()
   createdAt: Date;
 
