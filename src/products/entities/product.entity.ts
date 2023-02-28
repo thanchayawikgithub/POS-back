@@ -9,26 +9,26 @@ import {
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn()
-  pro_id: number;
+  product_id: number;
 
   @Column({ length: 64 })
-  pro_name: string;
+  product_name: string;
 
   @Column()
-  pro_type: string;
+  product_type: string;
 
   @Column()
-  pro_size: string;
+  product_size: string;
 
   @Column({ type: 'float' })
-  pro_price: number;
+  product_price: number;
 
   @CreateDateColumn()
-  pro_createdAt: Date;
+  product_createdAt: Date;
 
   @UpdateDateColumn()
-  pro_updatedAt: Date;
+  product_updatedAt: Date;
 
   @DeleteDateColumn()
-  pro_deletedAt: Date;
+  product_deletedAt: Date;
 }

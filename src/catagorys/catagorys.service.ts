@@ -19,12 +19,12 @@ export class CatagorysService {
     return this.catagoryRrpository.find();
   }
 
-  findOne(cat_id: number) {
-    return this.catagoryRrpository.findOne({ where: { cat_id } });
+  findOne(catagory_id: number) {
+    return this.catagoryRrpository.findOne({ where: { catagory_id } });
   }
 
-  async update(cat_id: number, updateCatagoryDto: UpdateCatagoryDto) {
-    const catagory = await this.catagoryRrpository.findOneBy({ cat_id });
+  async update(catagory_id: number, updateCatagoryDto: UpdateCatagoryDto) {
+    const catagory = await this.catagoryRrpository.findOneBy({ catagory_id });
     if (!catagory) {
       throw new NotFoundException();
     }
@@ -32,8 +32,8 @@ export class CatagorysService {
     return this.catagoryRrpository.save(updatedCatagory);
   }
 
-  async remove(cat_id: number) {
-    const catagory = await this.catagoryRrpository.findOneBy({ cat_id });
+  async remove(catagory_id: number) {
+    const catagory = await this.catagoryRrpository.findOneBy({ catagory_id });
     if (!catagory) {
       throw new NotFoundException();
     }
