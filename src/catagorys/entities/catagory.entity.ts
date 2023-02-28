@@ -16,11 +16,11 @@ export class Catagory {
   cat_name: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  cat_createdAt: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  cat_updatedAt: Date;
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  cat_deletedAt: Date;
 }

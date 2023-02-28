@@ -3,15 +3,15 @@ import { IsNotEmpty, Length, IsNumber, Min } from 'class-validator';
 export class CreateProductDto {
   @IsNotEmpty()
   @Length(3, 32)
-  name: string;
+  pro_name: string;
 
   @IsNotEmpty()
-  type: string;
+  pro_type: string;
 
   @IsNotEmpty()
-  size: string;
+  pro_size: string;
 
   @IsNumber()
   @Min(0)
-  price: number;
+  pro_price: number;
 }
