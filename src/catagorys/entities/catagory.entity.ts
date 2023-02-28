@@ -10,10 +10,10 @@ import {
 @Entity()
 export class Catagory {
   @PrimaryGeneratedColumn()
-  id: number;
+  cat_id: number;
 
   @Column()
-  name: string;
+  cat_name: string;
 
   @CreateDateColumn()
   createdAt: Date;
