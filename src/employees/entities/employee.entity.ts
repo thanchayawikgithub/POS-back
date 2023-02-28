@@ -10,40 +10,25 @@ import {
 @Entity()
 export class Employee {
   @PrimaryGeneratedColumn()
-  id: number;
+  employee_id: number;
 
-  @Column({
-    length: '32',
-    unique: true,
-  })
-  name: string;
+  @Column()
+  employee_name: string;
 
-  @Column({
-    unique: true,
-  })
-  address: string;
+  @Column()
+  employee_address: string;
 
-  @Column({
-    length: '10',
-    unique: true,
-  })
-  tel: string;
+  @Column()
+  employee_tel: string;
 
-  @Column({
-    length: '64',
-    unique: true,
-  })
-  email: string;
+  @Column()
+  employee_email: string;
 
-  @Column({
-    unique: true,
-  })
-  position: string;
+  @Column()
+  employee_position: string;
 
-  @Column({
-    unique: true,
-  })
-  hourly_wage: number;
+  @Column()
+  employee_hourly_wage: number;
 
   @CreateDateColumn()
   createdAt: Date;

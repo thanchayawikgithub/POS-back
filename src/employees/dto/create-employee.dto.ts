@@ -3,22 +3,22 @@ import { IsEmail, IsNotEmpty, Length } from 'class-validator';
 export class CreateEmployeeDto {
   @IsNotEmpty()
   @Length(3, 32)
-  name: string;
+  employee_name: string;
 
   @IsNotEmpty()
-  address: string;
+  employee_address: string;
 
   @IsNotEmpty()
   @Length(10)
-  tel: string;
+  employee_tel: string;
 
   @IsNotEmpty()
   @IsEmail()
-  email: string;
+  employee_email: string;
 
   @IsNotEmpty()
-  position: string;
+  employee_position: string;
 
   @IsNotEmpty()
-  hourly_wage: number;
+  employee_hourly_wage: number;
 }

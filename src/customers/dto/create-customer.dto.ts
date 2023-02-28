@@ -1,16 +1,18 @@
-import { IsNotEmpty, Length } from 'class-validator';
+import { IsNotEmpty, IsPositive, Length } from 'class-validator';
 
 export class CreateCustomerDto {
   @IsNotEmpty()
   @Length(4, 16)
-  name: string;
+  customer_name: string;
 
   @IsNotEmpty()
-  tel: string;
+  @Length(10)
+  customer_tel: string;
 
   @IsNotEmpty()
-  point: number;
+  @IsPositive()
+  customer_point: number;
 
   @IsNotEmpty()
-  startDate: Date;
+  customer_startDate: Date;
 }
