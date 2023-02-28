@@ -7,8 +7,8 @@ import { ProductsModule } from './products/products.module';
 import { DataSource } from 'typeorm';
 import { EmployeesModule } from './employees/employees.module';
 import { Employee } from './employees/entities/employee.entity';
-import { CatagorysModule } from './catagorys/catagorys.module';
-import { Catagory } from './catagorys/entities/catagory.entity';
+import { CategorysModule } from './categorys/categorys.module';
+import { Category } from './categorys/entities/category.entity';
 import { CustomersModule } from './customers/customers.module';
 import { Customer } from './customers/entities/customer.entity';
 import { StoresModule } from './stores/stores.module';
@@ -29,7 +29,7 @@ import { RecieptDetail } from './reciept_details/entities/reciept_detail.entity'
       entities: [
         Employee,
         Product,
-        Catagory,
+        Category,
         Customer,
         Store,
         Reciept,
@@ -40,7 +40,7 @@ import { RecieptDetail } from './reciept_details/entities/reciept_detail.entity'
     }),
     EmployeesModule,
     ProductsModule,
-    CatagorysModule,
+    CategorysModule,
     CustomersModule,
     StoresModule,
     RecieptsModule,
