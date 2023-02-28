@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateRecieptDto } from './dto/create-reciept.dto';
@@ -22,11 +22,19 @@ export class RecieptsService {
     return this.recieptRepository.findOneBy({ rec_id: id });
   }
 
-  update(id: number, updateRecieptDto: UpdateRecieptDto) {
-    return `This action updates a #${id} reciept`;
+  async update(id: number, updateRecieptDto: UpdateRecieptDto) {
+    const reciept = await this.recieptRepository.findOneBy({ rec_id: id });
+    if (!reciept) {
+      throw new NotFoundException();
+    }
+    const updateReciept = { ...reciept, ...updateRecieptDto };
+    return this.recieptRepository.save(updateReciept);
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} reciept`;
+  async remove(id: number) {
+    const reciept = await this.recieptRepository.findOneBy({ rec_id: id });
+    if (!reciept) {
+      throw new NotFoundException();
+    }
+    return this.recieptRepository.softRemove(reciept);
   }
 }
