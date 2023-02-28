@@ -15,6 +15,8 @@ import { StoresModule } from './stores/stores.module';
 import { Store } from './stores/entities/store.entity';
 import { RecieptsModule } from './reciepts/reciepts.module';
 import { Reciept } from './reciepts/entities/reciept.entity';
+import { MaterialsModule } from './materials/materials.module';
+import { Material } from './materials/entities/material.entity';
 
 @Module({
   imports: [
@@ -22,7 +24,15 @@ import { Reciept } from './reciepts/entities/reciept.entity';
       type: 'sqlite',
       database: 'db.sqlite',
       synchronize: true,
-      entities: [Employee, Product, Catagory, Customer, Store, Reciept],
+      entities: [
+        Employee,
+        Product,
+        Catagory,
+        Customer,
+        Store,
+        Reciept,
+        Material,
+      ],
       migrations: [],
     }),
     EmployeesModule,
@@ -31,6 +41,7 @@ import { Reciept } from './reciepts/entities/reciept.entity';
     CustomersModule,
     StoresModule,
     RecieptsModule,
+    MaterialsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
