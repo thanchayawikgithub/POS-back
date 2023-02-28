@@ -10,17 +10,17 @@ import {
 @Entity()
 export class Catagory {
   @PrimaryGeneratedColumn()
-  cat_id: number;
+  catagory_id: number;
 
   @Column()
-  cat_name: string;
+  catagory_name: string;
 
   @CreateDateColumn()
-  cat_createdAt: Date;
+  catagory_createdAt: Date;
 
   @UpdateDateColumn()
-  cat_updatedAt: Date;
+  catagory_updatedAt: Date;
 
   @DeleteDateColumn()
-  cat_deletedAt: Date;
+  catagory_deletedAt: Date;
 }

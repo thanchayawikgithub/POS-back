@@ -18,12 +18,12 @@ export class ProductsService {
     return this.productRepository.find();
   }
 
-  findOne(product_id: number) {
-    return this.productRepository.findOne({ where: { product_id } });
+  findOne(id: number) {
+    return this.productRepository.findOneBy({ product_id: id });
   }
 
-  async update(product_id: number, updateProductDto: UpdateProductDto) {
-    const product = await this.productRepository.findOneBy({ product_id });
+  async update(id: number, updateProductDto: UpdateProductDto) {
+    const product = await this.productRepository.findOneBy({ product_id: id });
     if (!product) {
       throw new NotFoundException();
     }
@@ -31,8 +31,8 @@ export class ProductsService {
     return this.productRepository.save(updatedProduct);
   }
 
-  async remove(product_id: number) {
-    const product = await this.productRepository.findOneBy({ product_id });
+  async remove(id: number) {
+    const product = await this.productRepository.findOneBy({ product_id: id });
     if (!product) {
       throw new NotFoundException();
     }

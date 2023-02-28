@@ -9,34 +9,41 @@ import { Catagory } from './entities/catagory.entity';
 export class CatagorysService {
   constructor(
     @InjectRepository(Catagory)
-    private catagoryRrpository: Repository<Catagory>,
+    private recieptdetailRepository: Repository<Catagory>,
   ) {}
   create(createCatagoryDto: CreateCatagoryDto) {
-    return this.catagoryRrpository.save(createCatagoryDto);
+    return this.recieptdetailRepository.save(createCatagoryDto);
   }
 
   findAll() {
-    return this.catagoryRrpository.find();
+    return this.recieptdetailRepository.find();
   }
 
-  findOne(catagory_id: number) {
-    return this.catagoryRrpository.findOne({ where: { catagory_id } });
+  findOne(id: number) {
+    return this.recieptdetailRepository.findOneBy({ catagory_id: id });
   }
 
-  async update(catagory_id: number, updateCatagoryDto: UpdateCatagoryDto) {
-    const catagory = await this.catagoryRrpository.findOneBy({ catagory_id });
+  async update(id: number, updateCatagoryDto: UpdateCatagoryDto) {
+    const catagory = await this.recieptdetailRepository.findOneBy({
+      catagory_id: id,
+    });
     if (!catagory) {
       throw new NotFoundException();
     }
-    const updatedCatagory = { ...catagory, ...updateCatagoryDto };
-    return this.catagoryRrpository.save(updatedCatagory);
+    const updateCatagory = {
+      ...catagory,
+      ...updateCatagoryDto,
+    };
+    return this.recieptdetailRepository.save(updateCatagory);
   }
 
-  async remove(catagory_id: number) {
-    const catagory = await this.catagoryRrpository.findOneBy({ catagory_id });
+  async remove(id: number) {
+    const catagory = await this.recieptdetailRepository.findOneBy({
+      catagory_id: id,
+    });
     if (!catagory) {
       throw new NotFoundException();
     }
-    return this.catagoryRrpository.softRemove(catagory);
+    return this.recieptdetailRepository.softRemove(catagory);
   }
 }
