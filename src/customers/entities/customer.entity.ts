@@ -10,19 +10,19 @@ import {
 @Entity()
 export class Customer {
   @PrimaryGeneratedColumn()
-  id: number;
+  customer_id: number;
 
   @Column()
-  name: string;
+  customer_name: string;
 
   @Column()
-  tel: string;
+  customer_tel: string;
 
   @Column()
-  point: number;
+  customer_point: number;
 
   @Column()
-  startDate: Date;
+  customer_startDate: Date;
 
   @CreateDateColumn()
   createdDate: Date;

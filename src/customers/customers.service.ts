@@ -21,11 +21,13 @@ export class CustomersService {
   }
 
   findOne(id: number) {
-    return this.customersRepository.findOne({ where: { id } });
+    return this.customersRepository.findOne({ where: { customer_id: id } });
   }
 
   async update(id: number, updateCustomerDto: UpdateCustomerDto) {
-    const customer = await this.customersRepository.findOneBy({ id: id });
+    const customer = await this.customersRepository.findOneBy({
+      customer_id: id,
+    });
     if (!customer) {
       throw new NotFoundException();
     }
@@ -34,7 +36,9 @@ export class CustomersService {
   }
 
   async remove(id: number) {
-    const customer = await this.customersRepository.findOneBy({ id: id });
+    const customer = await this.customersRepository.findOneBy({
+      customer_id: id,
+    });
     if (!customer) {
       throw new NotFoundException();
     }

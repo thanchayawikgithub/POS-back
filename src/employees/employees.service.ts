@@ -22,7 +22,7 @@ export class EmployeesService {
 
   async findOne(id: number) {
     const employee = await this.employeesRepository.findOne({
-      where: { id: id },
+      where: { employee_id: id },
     });
     if (!employee) {
       throw new NotFoundException();
@@ -33,7 +33,7 @@ export class EmployeesService {
 
   async update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
     const employee = await this.employeesRepository.findOne({
-      where: { id: id },
+      where: { employee_id: id },
     });
     if (!employee) {
       throw new NotFoundException();
@@ -44,7 +44,7 @@ export class EmployeesService {
 
   async remove(id: number) {
     const employee = await this.employeesRepository.findOne({
-      where: { id: id },
+      where: { employee_id: id },
     });
     if (!employee) {
       throw new NotFoundException();

@@ -19,11 +19,11 @@ export class StoresService {
   }
 
   findOne(id: number) {
-    return this.storeRepository.findOne({ where: { id } });
+    return this.storeRepository.findOne({ where: { store_id: id } });
   }
 
   async update(id: number, updateStoreDto: UpdateStoreDto) {
-    const store = await this.storeRepository.findOneBy({ id });
+    const store = await this.storeRepository.findOneBy({ store_id: id });
     if (!store) {
       throw new NotFoundException();
     }
@@ -32,7 +32,7 @@ export class StoresService {
   }
 
   async remove(id: number) {
-    const store = await this.storeRepository.findOneBy({ id });
+    const store = await this.storeRepository.findOneBy({ store_id: id });
     if (!store) {
       throw new NotFoundException();
     }

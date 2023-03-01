@@ -10,16 +10,16 @@ import {
 @Entity()
 export class Store {
   @PrimaryGeneratedColumn()
-  id: number;
+  store_id: number;
 
   @Column({ length: 64 })
-  name: string;
+  store_name: string;
 
   @Column()
-  address: string;
+  store_address: string;
 
   @Column({ length: 10 })
-  tel: string;
+  store_tel: string;
 
   @CreateDateColumn()
   createdAt: Date;
