@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "d2e647ce-28c0-4035-9c6f-81b29f939b77",
+		"_postman_id": "ad9e453a-3225-4669-9e53-6cf4d1fec394",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25472220"
+		"_exporter_id": "25473042"
 	},
 	"item": [
 		{
@@ -33,7 +33,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Latte\",\r\n    \"type\": \"Coffee\",\r\n    \"size\": \"S 8oz.\",\r\n    \"price\": 50\r\n}",
+							"raw": " {\r\n    \"categoryId\":2,\r\n    \"product_name\": \"Spaghetti\",\r\n    \"product_price\": 50,\r\n    \"product_type\": \"Noodle\",\r\n    \"product_size\": \"S\"\r\n }",
 							"options": {
 								"raw": {
 									"language": "json"
