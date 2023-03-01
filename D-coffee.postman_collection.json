@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ad9e453a-3225-4669-9e53-6cf4d1fec394",
+		"_postman_id": "d2e647ce-28c0-4035-9c6f-81b29f939b77",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25473042"
+		"_exporter_id": "25472220"
 	},
 	"item": [
 		{
@@ -32,13 +32,39 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": " {\r\n    \"categoryId\":2,\r\n    \"product_name\": \"Spaghetti\",\r\n    \"product_price\": 50,\r\n    \"product_type\": \"Noodle\",\r\n    \"product_size\": \"S\"\r\n }",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_name",
+									"value": "Fresh Milk",
+									"type": "text"
+								},
+								{
+									"key": "product_type",
+									"value": "Milk",
+									"type": "text"
+								},
+								{
+									"key": "product_size",
+									"value": "16",
+									"type": "text"
+								},
+								{
+									"key": "product_price",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/thanc/Pictures/milk.jpg"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{server}}/products",
@@ -86,6 +112,41 @@
 					"response": []
 				},
 				{
+					"name": "Update Product#id Image",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/thanc/Pictures/milk.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{server}}/products/:id/image",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"products",
+								":id",
+								"image"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete Product#id",
 					"request": {
 						"method": "DELETE",
@@ -111,7 +172,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "2"
+									"value": "4"
 								}
 							]
 						}
@@ -153,6 +214,80 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Product#id image",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/products/:id/image",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"products",
+								":id",
+								"image"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product#id imageFile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/products/image/:imageFile",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"products",
+								"image",
+								":imageFile"
+							],
+							"variable": [
+								{
+									"key": "imageFile",
+									"value": "e03b8512-207c-46e7-9686-d0b6b1bc7a89.jpg"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -183,7 +318,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"category_name\": \"Drink\"\r\n}",
+							"raw": "{\r\n    \"category_name\": \"Bakery\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -325,12 +460,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{server}}/users",
+							"raw": "{{server}}/employees",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"users"
+								"employees"
 							]
 						}
 					},
