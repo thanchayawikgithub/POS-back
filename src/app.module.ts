@@ -36,7 +36,6 @@ import { RecieptDetail } from './reciept_details/entities/reciept_detail.entity'
         Material,
         RecieptDetail,
       ],
-      migrations: [],
     }),
     EmployeesModule,
     ProductsModule,
