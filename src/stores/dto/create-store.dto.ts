@@ -6,7 +6,13 @@ export class CreateStoreDto {
   store_name: string;
 
   @IsNotEmpty()
-  store_address: string;
+  store_province: string;
+
+  @IsNotEmpty()
+  store_district: string;
+
+  @IsNotEmpty()
+  store_sub_district: string;
 
   @IsNotEmpty()
   store_tel: string;

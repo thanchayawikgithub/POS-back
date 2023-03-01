@@ -1,8 +1,9 @@
-import { IsNotEmpty, Length, IsNumber, Min } from 'class-validator';
+import { IsNotEmpty, Length } from 'class-validator';
 
 export class CreateProductDto {
   @IsNotEmpty()
   categoryId: number;
+
   @IsNotEmpty()
   @Length(3, 32)
   product_name: string;
@@ -13,7 +14,8 @@ export class CreateProductDto {
   @IsNotEmpty()
   product_size: string;
 
-  @IsNumber()
-  @Min(0)
+  @IsNotEmpty()
   product_price: number;
+
+  product_image = 'no_img_avaliable.jpg';
 }

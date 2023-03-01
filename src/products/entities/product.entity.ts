@@ -6,6 +6,7 @@ import {
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 @Entity()
 export class Product {
@@ -24,8 +25,18 @@ export class Product {
   @Column({ type: 'float' })
   product_price: number;
 
+  @Column({
+    length: '128',
+    default: 'no_img_avaliable.jpg',
+  })
+  product_image: string;
+
   @CreateDateColumn()
   product_createdAt: Date;
+
+  @UpdateDateColumn()
+  product_updatedAt: Date;
+
   @DeleteDateColumn()
   product_deletedAt: Date;
 

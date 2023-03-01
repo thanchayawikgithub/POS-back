@@ -24,6 +24,7 @@ export class ProductsService {
     product.product_type = createProductDto.product_type;
     product.product_size = createProductDto.product_size;
     product.product_price = createProductDto.product_price;
+    product.product_image = createProductDto.product_image;
     await this.productRepository.save(product);
     console.log(product);
     return await this.productRepository.findOne({

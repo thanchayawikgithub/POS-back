@@ -16,7 +16,13 @@ export class Store {
   store_name: string;
 
   @Column()
-  store_address: string;
+  store_province: string;
+
+  @Column()
+  store_district: string;
+
+  @Column()
+  store_sub_district: string;
 
   @Column({ length: 10 })
   store_tel: string;
