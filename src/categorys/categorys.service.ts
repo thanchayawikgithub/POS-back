@@ -9,22 +9,25 @@ import { Category } from './entities/category.entity';
 export class CategorysService {
   constructor(
     @InjectRepository(Category)
-    private recieptdetailRepository: Repository<Category>,
+    private categoryRepository: Repository<Category>,
   ) {}
   create(createCategoryDto: CreateCategoryDto) {
-    return this.recieptdetailRepository.save(createCategoryDto);
+    return this.categoryRepository.save(createCategoryDto);
   }
 
   findAll() {
-    return this.recieptdetailRepository.find();
+    return this.categoryRepository.find({ relations: ['products'] });
   }
 
   findOne(id: number) {
-    return this.recieptdetailRepository.findOneBy({ category_id: id });
+    return this.categoryRepository.findOne({
+      where: { category_id: id },
+      relations: ['products'],
+    });
   }
 
   async update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    const Category = await this.recieptdetailRepository.findOneBy({
+    const Category = await this.categoryRepository.findOneBy({
       category_id: id,
     });
     if (!Category) {
@@ -34,16 +37,16 @@ export class CategorysService {
       ...Category,
       ...updateCategoryDto,
     };
-    return this.recieptdetailRepository.save(updateCategory);
+    return this.categoryRepository.save(updateCategory);
   }
 
   async remove(id: number) {
-    const Category = await this.recieptdetailRepository.findOneBy({
+    const Category = await this.categoryRepository.findOneBy({
       category_id: id,
     });
     if (!Category) {
       throw new NotFoundException();
     }
-    return this.recieptdetailRepository.softRemove(Category);
+    return this.categoryRepository.softRemove(Category);
   }
 }

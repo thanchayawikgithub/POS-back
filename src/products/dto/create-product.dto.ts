@@ -2,6 +2,8 @@ import { IsNotEmpty, Length, IsNumber, Min } from 'class-validator';
 
 export class CreateProductDto {
   @IsNotEmpty()
+  categoryId: number;
+  @IsNotEmpty()
   @Length(3, 32)
   product_name: string;
 

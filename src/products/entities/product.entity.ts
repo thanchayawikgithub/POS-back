@@ -1,10 +1,11 @@
+import { Category } from 'src/categorys/entities/category.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
 @Entity()
 export class Product {
@@ -25,10 +26,9 @@ export class Product {
 
   @CreateDateColumn()
   product_createdAt: Date;
-
-  @UpdateDateColumn()
-  product_updatedAt: Date;
-
   @DeleteDateColumn()
   product_deletedAt: Date;
+
+  @ManyToOne(() => Category, (category) => category.products)
+  category: Category;
 }
