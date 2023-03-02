@@ -22,9 +22,6 @@ export class Customer {
   customer_point: number;
 
   @CreateDateColumn()
-  customer_startDate: Date;
-
-  @CreateDateColumn()
   createdDate: Date;
 
   @UpdateDateColumn()

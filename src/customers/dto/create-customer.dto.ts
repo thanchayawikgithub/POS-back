@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsPositive, Length } from 'class-validator';
+import { IsNotEmpty, Length } from 'class-validator';
 
 export class CreateCustomerDto {
   @IsNotEmpty()
@@ -10,8 +10,5 @@ export class CreateCustomerDto {
   customer_tel: string;
 
   @IsNotEmpty()
-  @IsPositive()
   customer_point: number;
-
-  customer_startDate: Date;
 }
