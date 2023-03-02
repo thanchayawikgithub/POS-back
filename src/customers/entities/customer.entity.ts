@@ -21,7 +21,7 @@ export class Customer {
   @Column()
   customer_point: number;
 
-  @Column()
+  @CreateDateColumn()
   customer_startDate: Date;
 
   @CreateDateColumn()

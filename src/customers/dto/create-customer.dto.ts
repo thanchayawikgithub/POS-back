@@ -13,6 +13,5 @@ export class CreateCustomerDto {
   @IsPositive()
   customer_point: number;
 
-  @IsNotEmpty()
   customer_startDate: Date;
 }
