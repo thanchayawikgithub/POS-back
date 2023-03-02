@@ -7,6 +7,7 @@ export class CreateEmployeeDto {
 
   @IsNotEmpty()
   employee_province: string;
+
   @IsNotEmpty()
   employee_district: string;
 
