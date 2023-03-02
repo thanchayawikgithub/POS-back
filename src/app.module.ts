@@ -19,6 +19,8 @@ import { MaterialsModule } from './materials/materials.module';
 import { Material } from './materials/entities/material.entity';
 import { RecieptDetailsModule } from './reciept_details/reciept_details.module';
 import { RecieptDetail } from './reciept_details/entities/reciept_detail.entity';
+import { UsersModule } from './users/users.module';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
@@ -35,6 +37,7 @@ import { RecieptDetail } from './reciept_details/entities/reciept_detail.entity'
         Reciept,
         Material,
         RecieptDetail,
+        User,
       ],
     }),
     EmployeesModule,
@@ -45,6 +48,7 @@ import { RecieptDetail } from './reciept_details/entities/reciept_detail.entity'
     RecieptsModule,
     MaterialsModule,
     RecieptDetailsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -15,9 +15,8 @@ export class ProductsService {
   ) {}
   async create(createProductDto: CreateProductDto) {
     const category = await this.categoryRepository.findOneBy({
-      category_id: createProductDto.categoryId,
+      category_name: createProductDto.categoryName,
     });
-    console.log(category);
     const product: Product = new Product();
     product.category = category;
     product.product_name = createProductDto.product_name;
@@ -26,7 +25,6 @@ export class ProductsService {
     product.product_price = createProductDto.product_price;
     product.product_image = createProductDto.product_image;
     await this.productRepository.save(product);
-    console.log(product);
     return await this.productRepository.findOne({
       where: { product_id: product.product_id },
       relations: ['category'],
@@ -38,7 +36,10 @@ export class ProductsService {
   }
 
   findOne(id: number) {
-    return this.productRepository.findOneBy({ product_id: id });
+    return this.productRepository.findOne({
+      where: { product_id: id },
+      relations: ['category'],
+    });
   }
 
   async update(id: number, updateProductDto: UpdateProductDto) {

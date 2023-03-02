@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "91961ad5-edab-4e9f-9f92-b78011be2848",
+		"_postman_id": "688de728-20c8-45f4-b691-e51bafa5ef1f",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25474259"
+		"_exporter_id": "25473042"
 	},
 	"item": [
 		{
@@ -11,9 +11,21 @@
 			"item": [
 				{
 					"name": "Get All Products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_id\": 2,\r\n    [{\r\n        \r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{server}}/products",
 							"host": [
@@ -32,39 +44,13 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "product_name",
-									"value": "Fresh Milk",
-									"type": "text"
-								},
-								{
-									"key": "product_type",
-									"value": "Milk",
-									"type": "text"
-								},
-								{
-									"key": "product_size",
-									"value": "16",
-									"type": "text"
-								},
-								{
-									"key": "product_price",
-									"value": "50",
-									"type": "text"
-								},
-								{
-									"key": "categoryId",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "file",
-									"type": "file",
-									"src": "/C:/Users/thanc/Pictures/milk.jpg"
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\": 2,\r\n        \"product_name\": \"Padkaprow\",\r\n        \"product_type\": \"Rice\",\r\n        \"product_size\": \"S\",\r\n        \"product_price\": \"70\",\r\n        \"product_image\": \"fa125b24-829c-48ee-95ca-a2f87c0e2632.jpg\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "{{server}}/products",
@@ -445,7 +431,7 @@
 			"name": "Employees",
 			"item": [
 				{
-					"name": "Get All Users",
+					"name": "Get All Employee",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -472,13 +458,13 @@
 					"response": []
 				},
 				{
-					"name": "Add New User",
+					"name": "Add New Employee",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"User 1\",\r\n    \"address\" : \"\",\r\n    \"tel\" : \"\",\r\n    \"email\": \"user1@mail.com\",\r\n    \"position\" : \"Staf\",\r\n    \"hourly_wage\"\r\n    \r\n}",
+							"raw": "{\r\n    \"userId\": 3,\r\n    \"employee_name\": \"lnwza003\",\r\n    \"employee_province\": \"chonburi\",\r\n    \"employee_district\": \"mueng\",\r\n    \"employee_subdistrict\": \"sansuk\",\r\n    \"employee_tel\": \"0982131311\",\r\n    \"employee_email\": \"1234@gmail.com\",\r\n    \"employee_position\": \"staff\",\r\n    \"employee_hourly_wage\": 40\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -492,6 +478,196 @@
 							],
 							"path": [
 								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee#id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"Pass%4321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/employees/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employee#id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\": 21\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/employees/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee#id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/employees/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"employees",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add New User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user_name\": \"Hello\",\r\n  \"user_login\": \"User2\",\r\n  \"user_password\": \"Pass@1234\" ,\r\n  \"user_role\": \"Staff\"  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"users"
 							]
 						}
 					},
@@ -512,12 +688,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{server}}/employees/:id",
+							"raw": "{{server}}/users/:id",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"employees",
+								"users",
 								":id"
 							],
 							"variable": [
@@ -581,12 +757,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{server}}/employees/:id",
+							"raw": "{{server}}/users/:id",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"employees",
+								"users",
 								":id"
 							],
 							"variable": [

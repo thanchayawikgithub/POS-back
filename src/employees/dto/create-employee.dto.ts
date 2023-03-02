@@ -6,7 +6,12 @@ export class CreateEmployeeDto {
   employee_name: string;
 
   @IsNotEmpty()
-  employee_address: string;
+  employee_province: string;
+  @IsNotEmpty()
+  employee_district: string;
+
+  @IsNotEmpty()
+  employee_subdistrict: string;
 
   @IsNotEmpty()
   @Length(10)
@@ -21,4 +26,7 @@ export class CreateEmployeeDto {
 
   @IsNotEmpty()
   employee_hourly_wage: number;
+
+  @IsNotEmpty()
+  userId: number;
 }
