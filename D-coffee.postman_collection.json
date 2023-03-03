@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "14a57651-da89-46b1-89d1-a8cea330da23",
+		"_postman_id": "f1d5e3b5-393a-4920-a547-c1c51a480afd",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25472220"
+		"_exporter_id": "25473292"
 	},
 	"item": [
 		{
@@ -1049,7 +1049,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Store 4\",\r\n    \"address\":\"32/2 Soy tun,Saen Suk,Mueang Chonburi,Chonburi 20130\",\r\n    \"tel\": \"066xxxxxxx\"\r\n}",
+							"raw": "{\r\n    \"store_name\":\"D-Coffee Prachinburi\",\r\n    \"store_province\": \"Prachinburi\",\r\n    \"store_district\":\"Mueng Prachinburi\",\r\n    \"store_sub_district\":\"Noen Hom\",\r\n    \"store_tel\":\"0821234567\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
