@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "688de728-20c8-45f4-b691-e51bafa5ef1f",
+		"_postman_id": "14a57651-da89-46b1-89d1-a8cea330da23",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25473042"
+		"_exporter_id": "25472220"
 	},
 	"item": [
 		{
@@ -1492,6 +1492,38 @@
 									"key": "id",
 									"value": null
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Anawin\",\r\n    \"password\": \"Pass%4321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/auth/login",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"auth",
+								"login"
 							]
 						}
 					},
