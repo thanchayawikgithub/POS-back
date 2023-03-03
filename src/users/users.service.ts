@@ -27,6 +27,13 @@ export class UsersService {
     });
   }
 
+  findOneByEmail(username: string) {
+    return this.userRepository.findOne({
+      where: { user_login: username },
+      relations: ['employee'],
+    });
+  }
+
   async update(id: number, updateUserDto: UpdateUserDto) {
     const user = await this.userRepository.findOneBy({ user_id: id });
     if (!user) {

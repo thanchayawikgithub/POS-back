@@ -21,6 +21,7 @@ import { RecieptDetailsModule } from './reciept_details/reciept_details.module';
 import { RecieptDetail } from './reciept_details/entities/reciept_detail.entity';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { User } from './users/entities/user.entity';
     MaterialsModule,
     RecieptDetailsModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
