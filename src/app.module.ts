@@ -26,8 +26,12 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db.sqlite',
+      type: 'mysql',
+      host: 'db4free.net',
+      port: 3306,
+      username: 'wanons',
+      password: 'password',
+      database: 'coffee',
       synchronize: true,
       entities: [
         Employee,
