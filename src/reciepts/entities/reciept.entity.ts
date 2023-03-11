@@ -1,9 +1,13 @@
+import { Customer } from 'src/customers/entities/customer.entity';
+import { Employee } from 'src/employees/entities/employee.entity';
 import { RecieptDetail } from 'src/reciept_details/entities/reciept_detail.entity';
+import { Store } from 'src/stores/entities/store.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -36,4 +40,11 @@ export class Reciept {
 
   @OneToMany(() => RecieptDetail, (reciept_detail) => reciept_detail.reciepts)
   recieptDetail: RecieptDetail[];
+
+  @ManyToOne(() => Store, (store) => store.reciepts)
+  store: Store;
+  @ManyToOne(() => Customer, (customer) => customer.reciepts)
+  customer: Customer;
+  @ManyToOne(() => Employee, (employee) => employee.reciepts)
+  employee: Employee;
 }

@@ -14,15 +14,10 @@ export class RecieptDetailsService {
     private recieptdetailRepository: Repository<RecieptDetail>,
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
-    @InjectRepository(Reciept)
-    private recieptRepository: Repository<Reciept>,
   ) {}
   async create(createRecieptDetailDto: CreateRecieptDetailDto) {
     const product = await this.productRepository.findOneBy({
       product_id: createRecieptDetailDto.productId,
-    });
-    const reciept = await this.recieptRepository.findOneBy({
-      rec_id: createRecieptDetailDto.recieptId,
     });
     const reciept_detail: RecieptDetail = new RecieptDetail();
     reciept_detail.rcd_amount = createRecieptDetailDto.rcd_amount;
@@ -31,7 +26,6 @@ export class RecieptDetailsService {
     reciept_detail.rcd_total =
       product.product_price * reciept_detail.rcd_amount;
     reciept_detail.products = product;
-    reciept_detail.reciepts = reciept;
 
     return this.recieptdetailRepository.save(reciept_detail);
   }

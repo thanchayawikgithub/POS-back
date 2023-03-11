@@ -17,7 +17,7 @@ export class CustomersService {
   }
 
   findAll() {
-    return this.customersRepository.find({});
+    return this.customersRepository.find({ relations: ['reciepts'] });
   }
 
   findOne(id: number) {

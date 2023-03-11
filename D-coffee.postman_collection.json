@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "5244d1d0-974e-4d0c-9ada-ef9d7562f28d",
+		"_postman_id": "f99d6506-c7ff-4293-9c3b-2308a430487d",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25474259"
+		"_exporter_id": "25473042"
 	},
 	"item": [
 		{
@@ -1292,7 +1292,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"rec_queue\": 3,\r\n  \"rec_time\": 14.00,\r\n  \"rec_discount\": 20,\r\n  \"rec_total\": 200,\r\n  \"rec_received\": 250,\r\n  \"rec_changed\": 50,\r\n  \"rec_payment\": \"Cash\"\r\n}",
+							"raw": "{\r\n  \"rec_queue\": 3,\r\n  \"rec_time\": 14.00,\r\n  \"rec_discount\": 20,\r\n  \"rec_received\": 250,\r\n  \"rec_payment\": \"Cash\",\r\n  \"storeId\": 1,\r\n  \"customerId\": 12,\r\n  \"employeeId\": 2,\r\n  \"recieptDetails\": [\r\n      {\r\n      \"productId\": 8,\r\n      \"rcd_amount\":2\r\n      }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1585,7 +1585,7 @@
 		},
 		{
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFuYXdpbiIsInN1YiI6MSwiaWF0IjoxNjc3OTE4MDI4LCJleHAiOjE2Nzg1MjI4Mjh9.jiallXMBiW9eBq2EsKfHfnGA9OY7B_0bLPwfxtA7d9U",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFuYXdpbiIsInN1YiI6MSwiaWF0IjoxNjc4NTI2MDIyLCJleHAiOjE2NzkxMzA4MjJ9.tPM9R6ai8s1M_WmuOvyyuhkni24t5K0TdvDK2AxcU6c",
 			"type": "string"
 		}
 	]

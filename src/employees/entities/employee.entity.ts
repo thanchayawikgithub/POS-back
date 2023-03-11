@@ -1,3 +1,4 @@
+import { Reciept } from 'src/reciepts/entities/reciept.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
   Column,
@@ -5,6 +6,7 @@ import {
   DeleteDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -51,4 +53,6 @@ export class Employee {
   @OneToOne(() => User)
   @JoinColumn()
   user: User;
+  @OneToMany(() => Reciept, (reciept) => reciept.employee)
+  reciepts: Reciept[];
 }

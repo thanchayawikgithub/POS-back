@@ -32,7 +32,7 @@ export class EmployeesService {
     await this.employeesRepository.save(employee);
     return await this.employeesRepository.findOne({
       where: { employee_id: employee.employee_id },
-      relations: ['user'],
+      relations: ['user', 'reciepts'],
     });
   }
 

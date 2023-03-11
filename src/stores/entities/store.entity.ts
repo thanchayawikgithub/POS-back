@@ -1,8 +1,10 @@
+import { Reciept } from 'src/reciepts/entities/reciept.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -35,4 +37,7 @@ export class Store {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @OneToMany(() => Reciept, (reciept) => reciept.store)
+  reciepts: Reciept[];
 }

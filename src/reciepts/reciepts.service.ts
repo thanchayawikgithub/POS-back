@@ -1,5 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Customer } from 'src/customers/entities/customer.entity';
+import { Employee } from 'src/employees/entities/employee.entity';
+import { Product } from 'src/products/entities/product.entity';
+import { RecieptDetail } from 'src/reciept_details/entities/reciept_detail.entity';
+import { Store } from 'src/stores/entities/store.entity';
 import { Repository } from 'typeorm';
 import { CreateRecieptDto } from './dto/create-reciept.dto';
 import { UpdateRecieptDto } from './dto/update-reciept.dto';
@@ -9,13 +14,66 @@ import { Reciept } from './entities/reciept.entity';
 export class RecieptsService {
   constructor(
     @InjectRepository(Reciept) private recieptRepository: Repository<Reciept>,
+    @InjectRepository(RecieptDetail)
+    private recieptDetailRepository: Repository<RecieptDetail>,
+    @InjectRepository(Product)
+    private productRepository: Repository<Product>,
+    @InjectRepository(Store)
+    private storeRepository: Repository<Store>,
+    @InjectRepository(Customer)
+    private customerRepository: Repository<Customer>,
+    @InjectRepository(Employee)
+    private employeeRepository: Repository<Employee>,
   ) {}
-  create(createRecieptDto: CreateRecieptDto) {
-    return this.recieptRepository.save(createRecieptDto);
+  async create(createRecieptDto: CreateRecieptDto) {
+    const store = await this.storeRepository.findOneBy({
+      store_id: createRecieptDto.storeId,
+    });
+    const customer = await this.customerRepository.findOneBy({
+      customer_id: createRecieptDto.customerId,
+    });
+    const employee = await this.employeeRepository.findOneBy({
+      employee_id: createRecieptDto.employeeId,
+    });
+    const reciept: Reciept = new Reciept();
+    reciept.rec_queue = createRecieptDto.rec_queue;
+    reciept.rec_time = createRecieptDto.rec_time;
+    reciept.rec_discount = createRecieptDto.rec_discount;
+    reciept.rec_received = createRecieptDto.rec_received;
+    reciept.rec_payment = createRecieptDto.rec_payment;
+    reciept.store = store;
+    reciept.customer = customer;
+    reciept.employee = employee;
+    reciept.rec_total = 0;
+    reciept.rec_changed = 0;
+    await this.recieptRepository.save(reciept);
+    for (const rec of createRecieptDto.recieptDetails) {
+      const recieptDetail = new RecieptDetail();
+      recieptDetail.rcd_amount = rec.rcd_amount;
+      recieptDetail.products = await this.productRepository.findOneBy({
+        product_id: rec.productId,
+      });
+      recieptDetail.rcd_name = recieptDetail.products.product_name;
+      recieptDetail.rcd_price = recieptDetail.products.product_price;
+      recieptDetail.rcd_total =
+        recieptDetail.products.product_price * recieptDetail.rcd_amount;
+      recieptDetail.reciepts = reciept;
+      await this.recieptDetailRepository.save(recieptDetail);
+      reciept.rec_total = reciept.rec_total + recieptDetail.rcd_total;
+    }
+    reciept.rec_total = reciept.rec_total - reciept.rec_discount;
+    reciept.rec_changed = reciept.rec_received - reciept.rec_total;
+    await this.recieptRepository.save(reciept);
+    return await this.recieptRepository.findOne({
+      where: { rec_id: reciept.rec_id },
+      relations: ['recieptDetail'],
+    });
   }
 
   findAll() {
-    return this.recieptRepository.find();
+    return this.recieptRepository.find({
+      relations: ['recieptDetail'],
+    });
   }
 
   findOne(id: number) {
