@@ -1,8 +1,11 @@
+import { Product } from 'src/products/entities/product.entity';
+import { Reciept } from 'src/reciepts/entities/reciept.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -32,4 +35,10 @@ export class RecieptDetail {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @ManyToOne(() => Product, (product) => product.recieptDetail)
+  products: Product;
+
+  @ManyToOne(() => Reciept, (reciept) => reciept.recieptDetail)
+  reciepts: Reciept;
 }

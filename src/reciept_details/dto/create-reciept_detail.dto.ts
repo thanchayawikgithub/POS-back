@@ -8,4 +8,8 @@ export class CreateRecieptDetailDto {
   rcd_price: number;
   @IsNotEmpty()
   rcd_total: number;
+  @IsNotEmpty()
+  productId: number;
+  @IsNotEmpty()
+  recieptId: number;
 }

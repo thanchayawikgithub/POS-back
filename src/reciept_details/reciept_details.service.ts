@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Product } from 'src/products/entities/product.entity';
+import { Reciept } from 'src/reciepts/entities/reciept.entity';
 import { Repository } from 'typeorm';
 import { CreateRecieptDetailDto } from './dto/create-reciept_detail.dto';
 import { UpdateRecieptDetailDto } from './dto/update-reciept_detail.dto';
@@ -10,17 +12,39 @@ export class RecieptDetailsService {
   constructor(
     @InjectRepository(RecieptDetail)
     private recieptdetailRepository: Repository<RecieptDetail>,
+    @InjectRepository(Product)
+    private productRepository: Repository<Product>,
+    @InjectRepository(Reciept)
+    private recieptRepository: Repository<Reciept>,
   ) {}
-  create(createRecieptDetailDto: CreateRecieptDetailDto) {
-    return this.recieptdetailRepository.save(createRecieptDetailDto);
+  async create(createRecieptDetailDto: CreateRecieptDetailDto) {
+    const product = await this.productRepository.findOneBy({
+      product_id: createRecieptDetailDto.productId,
+    });
+    const reciept = await this.recieptRepository.findOneBy({
+      rec_id: createRecieptDetailDto.recieptId,
+    });
+    const reciept_detail: RecieptDetail = new RecieptDetail();
+    reciept_detail.rcd_amount = createRecieptDetailDto.rcd_amount;
+    reciept_detail.rcd_name = product.product_name;
+    reciept_detail.rcd_price = product.product_price;
+    reciept_detail.rcd_total =
+      product.product_price * reciept_detail.rcd_amount;
+    reciept_detail.products = product;
+    reciept_detail.reciepts = reciept;
+
+    return this.recieptdetailRepository.save(reciept_detail);
   }
 
   findAll() {
-    return this.recieptdetailRepository.find();
+    return this.recieptdetailRepository.find({ relations: ['products'] });
   }
 
   findOne(id: number) {
-    return this.recieptdetailRepository.findOneBy({ rcd_id: id });
+    return this.recieptdetailRepository.findOne({
+      where: { rcd_id: id },
+      relations: ['products'],
+    });
   }
 
   async update(id: number, updateRecieptDetailDto: UpdateRecieptDetailDto) {

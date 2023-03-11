@@ -1,10 +1,12 @@
 import { Category } from 'src/categorys/entities/category.entity';
+import { RecieptDetail } from 'src/reciept_details/entities/reciept_detail.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -42,4 +44,7 @@ export class Product {
 
   @ManyToOne(() => Category, (category) => category.products)
   category: Category;
+
+  @OneToMany(() => RecieptDetail, (reciept_detail) => reciept_detail.products)
+  recieptDetail: RecieptDetail[];
 }
