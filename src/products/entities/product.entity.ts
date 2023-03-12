@@ -47,4 +47,7 @@ export class Product {
 
   @OneToMany(() => RecieptDetail, (reciept_detail) => reciept_detail.products)
   recieptDetail: RecieptDetail[];
+
+  @Column()
+  categoryId: number;
 }

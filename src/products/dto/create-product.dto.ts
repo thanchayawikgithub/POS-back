@@ -2,9 +2,6 @@ import { IsNotEmpty, Length } from 'class-validator';
 
 export class CreateProductDto {
   @IsNotEmpty()
-  categoryName: string;
-
-  @IsNotEmpty()
   @Length(3, 32)
   product_name: string;
 
@@ -18,4 +15,7 @@ export class CreateProductDto {
   product_price: number;
 
   product_image = 'no_img_avaliable.jpg';
+
+  @IsNotEmpty()
+  categoryId: number;
 }

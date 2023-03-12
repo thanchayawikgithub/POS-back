@@ -9,6 +9,7 @@ import {
   UseInterceptors,
   UploadedFile,
   Res,
+  Query,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -17,7 +18,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import { extname } from 'path';
-import { Response } from 'express';
+import { query, Response } from 'express';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
@@ -46,9 +47,20 @@ export class ProductsController {
     return this.productsService.create(createProductDto);
   }
 
+  @Get('category/:id')
+  findByCategory(@Param('id') id: string) {
+    return this.productsService.findByCategory(+id);
+  }
+
   @Get()
-  findAll() {
-    return this.productsService.findAll();
+  findAll(@Query() query: { cat?: string; order?: string; orderBy?: string }) {
+    return this.productsService.findAll({
+      relations: ['category'],
+      order: query.orderBy
+        ? { [query.orderBy]: query.order }
+        : { product_createdAt: 'DESC' },
+      where: query.cat ? { categoryId: parseInt(query.cat) } : {},
+    });
   }
 
   @Get(':id')

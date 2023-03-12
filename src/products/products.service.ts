@@ -9,13 +9,16 @@ import { Product } from './entities/product.entity';
 @Injectable()
 export class ProductsService {
   constructor(
-    @InjectRepository(Product) private productRepository: Repository<Product>,
+    @InjectRepository(Product)
+    private productRepository: Repository<Product>,
     @InjectRepository(Category)
     private categoryRepository: Repository<Category>,
   ) {}
   async create(createProductDto: CreateProductDto) {
-    const category = await this.categoryRepository.findOneBy({
-      category_name: createProductDto.categoryName,
+    const category = await this.categoryRepository.findOne({
+      where: {
+        category_id: createProductDto.categoryId,
+      },
     });
     const product: Product = new Product();
     product.category = category;
@@ -24,15 +27,14 @@ export class ProductsService {
     product.product_size = createProductDto.product_size;
     product.product_price = createProductDto.product_price;
     product.product_image = createProductDto.product_image;
-    await this.productRepository.save(product);
-    return await this.productRepository.findOne({
-      where: { product_id: product.product_id },
-      relations: ['category'],
-    });
+    return this.productRepository.save(product);
+  }
+  findByCategory(id: number) {
+    return this.productRepository.find({ where: { categoryId: id } });
   }
 
-  findAll() {
-    return this.productRepository.find({ relations: ['category'] });
+  findAll(option) {
+    return this.productRepository.find(option);
   }
 
   findOne(id: number) {
