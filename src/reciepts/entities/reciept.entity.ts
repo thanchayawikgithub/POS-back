@@ -32,11 +32,11 @@ export class Reciept {
   @Column()
   rec_payment: string;
   @CreateDateColumn()
-  createdAt: Date;
+  rec_createdAt: Date;
   @UpdateDateColumn()
-  updatedAt: Date;
+  rec_updatedAt: Date;
   @DeleteDateColumn()
-  deletedAt: Date;
+  rec_deletedAt: Date;
 
   @OneToMany(() => RecieptDetail, (reciept_detail) => reciept_detail.reciepts)
   recieptDetail: RecieptDetail[];

@@ -28,13 +28,13 @@ export class RecieptDetail {
   rcd_total: number;
 
   @CreateDateColumn()
-  createdAt: Date;
+  rcd_createdAt: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  rcd_updatedAt: Date;
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  rcd_deletedAt: Date;
 
   @ManyToOne(() => Product, (product) => product.recieptDetail)
   products: Product;
