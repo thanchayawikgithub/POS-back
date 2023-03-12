@@ -1,13 +1,10 @@
 import { Reciept } from 'src/reciepts/entities/reciept.entity';
-import { User } from 'src/users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinColumn,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -19,6 +16,12 @@ export class Employee {
 
   @Column()
   employee_name: string;
+
+  @Column()
+  employee_login: string;
+
+  @Column()
+  employee_password: string;
 
   @Column()
   employee_province: string;
@@ -50,9 +53,6 @@ export class Employee {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @OneToOne(() => User)
-  @JoinColumn()
-  user: User;
   @OneToMany(() => Reciept, (reciept) => reciept.employee)
   reciepts: Reciept[];
 }

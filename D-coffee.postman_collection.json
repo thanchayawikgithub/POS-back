@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f99d6506-c7ff-4293-9c3b-2308a430487d",
+		"_postman_id": "5b23f485-3a75-478d-965c-769bacf48def",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25473042"
+		"_exporter_id": "25472220"
 	},
 	"item": [
 		{
@@ -490,7 +490,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userId\": 3,\r\n    \"employee_name\": \"lnwza003\",\r\n    \"employee_province\": \"chonburi\",\r\n    \"employee_district\": \"mueng\",\r\n    \"employee_subdistrict\": \"sansuk\",\r\n    \"employee_tel\": \"0982131311\",\r\n    \"employee_email\": \"1234@gmail.com\",\r\n    \"employee_position\": \"staff\",\r\n    \"employee_hourly_wage\": 40\r\n}",
+							"raw": "{\r\n    \"employee_name\": \"admin\",\r\n    \"employee_login\": \"admin\",\r\n    \"employee_password\": \"Pass@1234\",\r\n    \"employee_province\": \"chonburi\",\r\n    \"employee_district\": \"mueng\",\r\n    \"employee_subdistrict\": \"sansuk\",\r\n    \"employee_tel\": \"0982131311\",\r\n    \"employee_email\": \"1234@gmail.com\",\r\n    \"employee_position\": \"staff\",\r\n    \"employee_hourly_wage\": 40\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -612,186 +612,6 @@
 					"response": []
 				}
 			],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "{{token}}",
-						"type": "string"
-					}
-				]
-			},
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
-			"name": "Users",
-			"item": [
-				{
-					"name": "Get All Users",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{server}}/users",
-							"host": [
-								"{{server}}"
-							],
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add New User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"user_name\": \"Hello\",\r\n  \"user_login\": \"User2\",\r\n  \"user_password\": \"Pass@1234\" ,\r\n  \"user_role\": \"Staff\"  \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{server}}/users",
-							"host": [
-								"{{server}}"
-							],
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update User#id",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"password\": \"Pass%4321\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{server}}/users/:id",
-							"host": [
-								"{{server}}"
-							],
-							"path": [
-								"users",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete User#id",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"price\": 21\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{server}}/employees/:id",
-							"host": [
-								"{{server}}"
-							],
-							"path": [
-								"employees",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get User#id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{server}}/users/:id",
-							"host": [
-								"{{server}}"
-							],
-							"path": [
-								"users",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			],
 			"event": [
 				{
 					"listen": "prerequest",
@@ -819,16 +639,6 @@
 				{
 					"name": "Get All Customers",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -972,16 +782,6 @@
 					"response": []
 				}
 			],
-			"auth": {
-				"type": "bearer",
-				"bearer": [
-					{
-						"key": "token",
-						"value": "{{token}}",
-						"type": "string"
-					}
-				]
-			},
 			"event": [
 				{
 					"listen": "prerequest",
@@ -1143,12 +943,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{server}}/stores/",
+							"raw": "{{server}}/materials/",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"stores",
+								"materials",
 								""
 							]
 						}
@@ -1161,12 +961,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{server}}/stores/:id",
+							"raw": "{{server}}/materials/:id",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"stores",
+								"materials",
 								":id"
 							],
 							"variable": [
@@ -1245,12 +1045,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{server}}/stores/:id",
+							"raw": "{{server}}/materials/:id",
 							"host": [
 								"{{server}}"
 							],
 							"path": [
-								"stores",
+								"materials",
 								":id"
 							],
 							"variable": [
@@ -1524,7 +1324,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"Anawin\",\r\n    \"password\": \"Pass%4321\"\r\n}",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"Pass@1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1585,7 +1385,7 @@
 		},
 		{
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFuYXdpbiIsInN1YiI6MSwiaWF0IjoxNjc4NTI2MDIyLCJleHAiOjE2NzkxMzA4MjJ9.tPM9R6ai8s1M_WmuOvyyuhkni24t5K0TdvDK2AxcU6c",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJpYXQiOjE2Nzg2MDU1MDIsImV4cCI6MTY3OTIxMDMwMn0.ccr35N2xM9KAM-xzQulHLV8-7ymyU753_Yt3bX2tOwc",
 			"type": "string"
 		}
 	]

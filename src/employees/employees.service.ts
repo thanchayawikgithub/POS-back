@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
@@ -11,17 +10,13 @@ export class EmployeesService {
   constructor(
     @InjectRepository(Employee)
     private employeesRepository: Repository<Employee>,
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
   ) {}
 
   async create(createEmployeeDto: CreateEmployeeDto) {
-    const user = await this.userRepository.findOneBy({
-      user_id: createEmployeeDto.userId,
-    });
     const employee: Employee = new Employee();
-    employee.user = user;
     employee.employee_name = createEmployeeDto.employee_name;
+    employee.employee_login = createEmployeeDto.employee_login;
+    employee.employee_password = createEmployeeDto.employee_password;
     employee.employee_province = createEmployeeDto.employee_province;
     employee.employee_district = createEmployeeDto.employee_district;
     employee.employee_subdistrict = createEmployeeDto.employee_subdistrict;
@@ -32,24 +27,29 @@ export class EmployeesService {
     await this.employeesRepository.save(employee);
     return await this.employeesRepository.findOne({
       where: { employee_id: employee.employee_id },
-      relations: ['user', 'reciepts'],
+      relations: ['reciepts'],
     });
   }
 
   findAll() {
-    return this.employeesRepository.find({ relations: ['user'] });
+    return this.employeesRepository.find();
   }
 
   async findOne(id: number) {
     const employee = await this.employeesRepository.findOne({
       where: { employee_id: id },
-      relations: ['user'],
     });
     if (!employee) {
       throw new NotFoundException();
     }
 
     return employee;
+  }
+
+  findOneByEmail(email: string) {
+    return this.employeesRepository.findOne({
+      where: { employee_login: email },
+    });
   }
 
   async update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
