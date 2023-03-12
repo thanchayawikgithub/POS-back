@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "5b23f485-3a75-478d-965c-769bacf48def",
+		"_postman_id": "73a05936-9652-4c96-bdb5-0c2b82e57477",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25472220"
+		"_exporter_id": "25473292"
 	},
 	"item": [
 		{
@@ -39,6 +39,76 @@
 					"response": []
 				},
 				{
+					"name": "Get All Products By Category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/products/category/1",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"products",
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products By Category Query String",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/products?orderBy=product_price&order=ASC",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "orderBy",
+									"value": "product_price"
+								},
+								{
+									"key": "order",
+									"value": "ASC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Add New Product",
 					"request": {
 						"method": "POST",
@@ -47,34 +117,34 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "categoryId",
-									"value": "3",
-									"type": "text"
-								},
-								{
 									"key": "product_name",
-									"value": "PadkaprowMoo",
+									"value": "Coffee 2",
 									"type": "text"
 								},
 								{
 									"key": "product_type",
-									"value": "Rice",
+									"value": "Drink",
 									"type": "text"
 								},
 								{
 									"key": "product_size",
-									"value": "M",
+									"value": "16",
 									"type": "text"
 								},
 								{
 									"key": "product_price",
-									"value": "80",
+									"value": "40",
 									"type": "text"
 								},
 								{
-									"key": "product_image",
+									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/ASUS/Downloads/494645db6798945b3c628be37b75241d_กะเพราเจ_new.jpg"
+									"src": "/C:/Users/uSeR/Pictures/coffee2.jpg"
+								},
+								{
+									"key": "categoryId",
+									"value": "1",
+									"type": "text"
 								}
 							]
 						},
