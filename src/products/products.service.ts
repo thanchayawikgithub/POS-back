@@ -21,6 +21,7 @@ export class ProductsService {
       },
     });
     const product: Product = new Product();
+    product.categoryId = createProductDto.categoryId;
     product.category = category;
     product.product_name = createProductDto.product_name;
     product.product_type = createProductDto.product_type;
