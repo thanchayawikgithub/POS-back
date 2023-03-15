@@ -2,9 +2,9 @@ import { IsNotEmpty } from 'class-validator';
 
 export class CreateCheckMaterialDetialDto {
   @IsNotEmpty()
-  cmd_id: number;
+  MaterialId: number;
   @IsNotEmpty()
-  cmd_name: string;
+  CheckMaterialId: number;
   @IsNotEmpty()
   cmd_qty_last: number;
   @IsNotEmpty()

@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "73a05936-9652-4c96-bdb5-0c2b82e57477",
+		"_postman_id": "e98883be-c5cc-45a7-870a-d23d54cc5de8",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25473292"
+		"_exporter_id": "25473042"
 	},
 	"item": [
 		{
@@ -1008,6 +1008,266 @@
 			"name": "Materials",
 			"item": [
 				{
+					"name": "Check Material",
+					"item": [
+						{
+							"name": "Get All Check Mat",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/check_materials",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"check_materials"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add new Check_Materials",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"EmployeeId\" : \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/check_materials/",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"check_materials",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get check material#id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/check_materials/:id",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"check_materials",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update Check Material#id",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mat_quantity\": 10,\r\n    \"mat_unit\": 5\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/check_materials/:id",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"check_materials",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Check Material#id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/check_materials/:id",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"check_materials",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Check Material Detail",
+					"item": [
+						{
+							"name": "Get All Check Material Detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/check_material_detials",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"check_material_detials"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add new Check_Materials",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"MaterialId\": 0,\r\n    \"CheckMaterialId\": 0,\r\n    \"cmd_qty_last\": 0,\r\n    \"cmd_qty_remain\": 0,\r\n    \"cmd_qty_expire\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/check_material_detials/",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"check_material_detials",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get check material#id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/check_material_detials/:id",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"check_material_detials",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update Check Material#id",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mat_quantity\": 10,\r\n    \"mat_unit\": 5\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/check_materials/:id",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"check_materials",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Check Material#id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{server}}/check_materials/:id",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"check_materials",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "get All Materials",
 					"request": {
 						"method": "GET",
@@ -1455,7 +1715,7 @@
 		},
 		{
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJpYXQiOjE2Nzg2MDU1MDIsImV4cCI6MTY3OTIxMDMwMn0.ccr35N2xM9KAM-xzQulHLV8-7ymyU753_Yt3bX2tOwc",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJpYXQiOjE2Nzg4ODYxOTAsImV4cCI6MTY3OTQ5MDk5MH0.TiC0CdBBEd1U1Rkp5Wmgx1CtcM4kfBphNXn1-0yX8pk",
 			"type": "string"
 		}
 	]

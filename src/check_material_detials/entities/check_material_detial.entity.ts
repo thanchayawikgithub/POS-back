@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { CheckMaterial } from 'src/check_materials/entities/check_material.entity';
+import { Material } from 'src/materials/entities/material.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class CheckMaterialDetial {
@@ -12,4 +14,12 @@ export class CheckMaterialDetial {
   cmd_qty_remain: number;
   @Column()
   cmd_qty_expire: Date;
+
+  @ManyToOne(
+    () => CheckMaterial,
+    (checkmaterial) => checkmaterial.checkmaterialdetails,
+  )
+  checkmaterial: CheckMaterial;
+  @ManyToOne(() => Material, (material) => material.checkmaterialdetails)
+  material: Material;
 }
