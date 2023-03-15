@@ -20,6 +20,10 @@ import { Material } from './materials/entities/material.entity';
 import { RecieptDetailsModule } from './reciept_details/reciept_details.module';
 import { RecieptDetail } from './reciept_details/entities/reciept_detail.entity';
 import { AuthModule } from './auth/auth.module';
+import { CheckMaterialsModule } from './check_materials/check_materials.module';
+import { CheckMaterial } from './check_materials/entities/check_material.entity';
+import { CheckMaterialDetialsModule } from './check_material_detials/check_material_detials.module';
+import { CheckMaterialDetial } from './check_material_detials/entities/check_material_detial.entity';
 
 @Module({
   imports: [
@@ -40,6 +44,8 @@ import { AuthModule } from './auth/auth.module';
         Reciept,
         Material,
         RecieptDetail,
+        CheckMaterial,
+        CheckMaterialDetial,
       ],
     }),
     EmployeesModule,
@@ -51,6 +57,8 @@ import { AuthModule } from './auth/auth.module';
     MaterialsModule,
     RecieptDetailsModule,
     AuthModule,
+    CheckMaterialsModule,
+    CheckMaterialDetialsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,3 +1,4 @@
+import { CheckMaterial } from 'src/check_materials/entities/check_material.entity';
 import { Reciept } from 'src/reciepts/entities/reciept.entity';
 import {
   Column,
@@ -55,4 +56,7 @@ export class Employee {
 
   @OneToMany(() => Reciept, (reciept) => reciept.employee)
   reciepts: Reciept[];
+
+  @OneToMany(() => CheckMaterial, (checkmaterial) => checkmaterial.employee)
+  checkmaterials: CheckMaterial[];
 }
