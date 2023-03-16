@@ -26,6 +26,8 @@ import { CheckMaterialDetialsModule } from './check_material_detials/check_mater
 import { CheckMaterialDetial } from './check_material_detials/entities/check_material_detial.entity';
 import { SalariesModule } from './salaries/salaries.module';
 import { Salary } from './salaries/entities/salary.entity';
+import { BillModule } from './bill/bill.module';
+import { Bill } from './bill/entities/bill.entity';
 
 @Module({
   imports: [
@@ -49,6 +51,7 @@ import { Salary } from './salaries/entities/salary.entity';
         CheckMaterial,
         CheckMaterialDetial,
         Salary,
+        Bill,
       ],
     }),
     EmployeesModule,
@@ -63,6 +66,7 @@ import { Salary } from './salaries/entities/salary.entity';
     CheckMaterialsModule,
     CheckMaterialDetialsModule,
     SalariesModule,
+    BillModule,
   ],
   controllers: [AppController],
   providers: [AppService],
