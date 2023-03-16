@@ -11,7 +11,7 @@ export class CreateMaterialDto {
   mat_quantity: number;
 
   @IsNotEmpty()
-  mat_unit: number;
+  mat_unit: string;
 
   @IsNotEmpty()
   mat_price_per_unit: number;

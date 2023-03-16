@@ -28,6 +28,8 @@ import { SalariesModule } from './salaries/salaries.module';
 import { Salary } from './salaries/entities/salary.entity';
 import { BillModule } from './bill/bill.module';
 import { Bill } from './bill/entities/bill.entity';
+import { BillDetailsModule } from './bill_details/bill_details.module';
+import { BillDetail } from './bill_details/entities/bill_detail.entity';
 
 @Module({
   imports: [
@@ -52,6 +54,7 @@ import { Bill } from './bill/entities/bill.entity';
         CheckMaterialDetial,
         Salary,
         Bill,
+        BillDetail,
       ],
     }),
     EmployeesModule,
@@ -67,6 +70,7 @@ import { Bill } from './bill/entities/bill.entity';
     CheckMaterialDetialsModule,
     SalariesModule,
     BillModule,
+    BillDetailsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,3 +1,4 @@
+import { BillDetail } from 'src/bill_details/entities/bill_detail.entity';
 import { Employee } from 'src/employees/entities/employee.entity';
 import {
   Column,
@@ -44,4 +45,7 @@ export class Bill {
 
   @ManyToOne(() => Employee, (employee) => employee.bill)
   employee: Employee;
+
+  @OneToMany(() => BillDetail, (billDetail) => billDetail.bill)
+  bill_details: BillDetail;
 }

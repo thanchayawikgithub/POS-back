@@ -1,3 +1,4 @@
+import { BillDetail } from 'src/bill_details/entities/bill_detail.entity';
 import { CheckMaterialDetial } from 'src/check_material_detials/entities/check_material_detial.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -16,7 +17,7 @@ export class Material {
   mat_quantity: number;
 
   @Column()
-  mat_unit: number;
+  mat_unit: string;
 
   @Column()
   mat_price_per_unit: number;
@@ -26,4 +27,7 @@ export class Material {
     (checkmaterialdetail) => checkmaterialdetail.checkmaterial,
   )
   checkmaterialdetails: CheckMaterialDetial[];
+
+  @OneToMany(() => BillDetail, (billDetail) => billDetail.materials)
+  bill_detail: BillDetail[];
 }

@@ -15,6 +15,7 @@ export class RecieptDetailsService {
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
   ) {}
+
   async create(createRecieptDetailDto: CreateRecieptDetailDto) {
     const product = await this.productRepository.findOneBy({
       product_id: createRecieptDetailDto.productId,
