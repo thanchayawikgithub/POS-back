@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e98883be-c5cc-45a7-870a-d23d54cc5de8",
+		"_postman_id": "d927915b-d2ff-4c23-a97f-f02dbbe7fc7e",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25473042"
+		"_exporter_id": "25471804"
 	},
 	"item": [
 		{
@@ -839,6 +839,176 @@
 							],
 							"path": [
 								"customers",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Salaries",
+			"item": [
+				{
+					"name": "Get All Salaries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/salaries",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"salaries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add New Salaries",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ss_work_hour\" : 30 ,\r\n    \"ss_salary\" : 900\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/salaries",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"salaries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Salary#id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"customer_point\" : 20\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/salaries/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"salaries",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Salary#id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"point\": 21\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/salaries/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"salaries",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Salary#id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/salaries/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"salaries",
 								":id"
 							],
 							"variable": [
