@@ -9,7 +9,9 @@ describe('CheckMaterialDetialsService', () => {
       providers: [CheckMaterialDetialsService],
     }).compile();
 
-    service = module.get<CheckMaterialDetialsService>(CheckMaterialDetialsService);
+    service = module.get<CheckMaterialDetialsService>(
+      CheckMaterialDetialsService,
+    );
   });
 
   it('should be defined', () => {
