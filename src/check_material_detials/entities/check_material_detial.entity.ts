@@ -20,6 +20,7 @@ export class CheckMaterialDetial {
     (checkmaterial) => checkmaterial.checkmaterialdetails,
   )
   checkmaterial: CheckMaterial;
+
   @ManyToOne(() => Material, (material) => material.checkmaterialdetails)
   material: Material;
 }

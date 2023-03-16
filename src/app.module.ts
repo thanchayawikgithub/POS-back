@@ -30,6 +30,7 @@ import { BillModule } from './bill/bill.module';
 import { Bill } from './bill/entities/bill.entity';
 import { BillDetailsModule } from './bill_details/bill_details.module';
 import { BillDetail } from './bill_details/entities/bill_detail.entity';
+import { CheckInOutsModule } from './check_in_outs/check_in_outs.module';
 
 @Module({
   imports: [
@@ -71,6 +72,7 @@ import { BillDetail } from './bill_details/entities/bill_detail.entity';
     SalariesModule,
     BillModule,
     BillDetailsModule,
+    CheckInOutsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

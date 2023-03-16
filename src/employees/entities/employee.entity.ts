@@ -1,4 +1,5 @@
 import { Bill } from 'src/bill/entities/bill.entity';
+import { CheckInOut } from 'src/check_in_outs/entities/check_in_out.entity';
 import { CheckMaterial } from 'src/check_materials/entities/check_material.entity';
 import { Reciept } from 'src/reciepts/entities/reciept.entity';
 import {
@@ -60,6 +61,9 @@ export class Employee {
 
   @OneToMany(() => CheckMaterial, (checkmaterial) => checkmaterial.employee)
   checkmaterials: CheckMaterial[];
+
+  @OneToMany(() => CheckInOut, (checkinout) => checkinout.employee)
+  checkinouts: CheckInOut[];
 
   @OneToMany(() => Bill, (bill) => bill.employee)
   bill: Bill[];

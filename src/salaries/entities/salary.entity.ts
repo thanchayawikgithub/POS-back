@@ -1,8 +1,10 @@
+import { CheckInOut } from 'src/check_in_outs/entities/check_in_out.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -26,4 +28,7 @@ export class Salary {
 
   @DeleteDateColumn()
   deletedDate: Date;
+
+  @OneToMany(() => CheckInOut, (checkinout) => checkinout.salary)
+  checkinouts: CheckInOut[];
 }
