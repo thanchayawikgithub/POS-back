@@ -26,15 +26,20 @@ export class CheckMaterialDetialsService {
     });
     const check_material_detial = new CheckMaterialDetial();
     check_material_detial.cmd_name = material.mat_name;
-    check_material_detial.cmd_qty_last =
-      createCheckMaterialDetialDto.cmd_qty_last;
+    check_material_detial.cmd_qty_last = material.mat_quantity;
     check_material_detial.cmd_qty_remain =
       createCheckMaterialDetialDto.cmd_qty_remain;
     check_material_detial.cmd_qty_expire =
       createCheckMaterialDetialDto.cmd_qty_expire;
     check_material_detial.material = material;
     check_material_detial.checkmaterial = check_material;
+
+    material.mat_quantity = createCheckMaterialDetialDto.cmd_qty_remain;
+
     await this.checkMaterialDetailRepository.save(check_material_detial);
+
+    await this.materialRepository.save(material);
+
     return await this.checkMaterialDetailRepository.findOne({
       where: { cmd_id: check_material_detial.cmd_id },
       relations: ['material', 'checkmaterial'],

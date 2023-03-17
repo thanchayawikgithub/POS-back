@@ -31,9 +31,9 @@ export class CheckInOut {
   @DeleteDateColumn()
   deletedDate: Date;
 
-  @ManyToOne(() => Employee, (employee) => employee.checkinouts)
-  employee: Employee;
+  // @ManyToOne(() => Employee, (employee) => employee.checkinouts)
+  // employee: Employee;
 
-  @ManyToOne(() => Salary, (salary) => salary.checkinouts)
-  salary: Salary;
+  // @ManyToOne(() => Salary, (salary) => salary.checkinouts)
+  // salary: Salary;
 }

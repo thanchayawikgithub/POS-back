@@ -29,6 +29,6 @@ export class Salary {
   @DeleteDateColumn()
   deletedDate: Date;
 
-  @OneToMany(() => CheckInOut, (checkinout) => checkinout.salary)
-  checkinouts: CheckInOut[];
+  // @OneToMany(() => CheckInOut, (checkinout) => checkinout.salary)
+  // checkinouts: CheckInOut[];
 }

@@ -24,13 +24,15 @@ export class CheckMaterialsService {
   }
 
   findAll() {
-    return this.checkMaterialRepository.find({ relations: ['employee'] });
+    return this.checkMaterialRepository.find({
+      relations: ['employee', 'checkmaterialdetails'],
+    });
   }
 
   findOne(id: number) {
     return this.checkMaterialRepository.findOne({
       where: { check_mat_id: id },
-      relations: ['employee'],
+      relations: ['employee', 'checkmaterialdetails'],
     });
   }
   async update(id: number, updateMaterialDto: UpdateCheckMaterialDto) {
