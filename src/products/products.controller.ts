@@ -19,11 +19,9 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import { extname } from 'path';
-import { query, Response } from 'express';
+import { Response } from 'express';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { Like } from 'typeorm';
-import { request } from 'http';
 
 @Controller('products')
 export class ProductsController {

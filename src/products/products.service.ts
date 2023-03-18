@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm/dist';
 import { Category } from 'src/categorys/entities/category.entity';
 import { Like, Repository } from 'typeorm';
-import { resourceLimits } from 'worker_threads';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
@@ -51,6 +50,7 @@ export class ProductsService {
       take: take,
       skip: skip,
     });
+
     const lastPage = Math.ceil(total / take);
     return {
       data: result,
