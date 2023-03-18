@@ -10,6 +10,7 @@ import {
   UploadedFile,
   Res,
   Query,
+  Request,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -21,6 +22,8 @@ import { extname } from 'path';
 import { query, Response } from 'express';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { Like } from 'typeorm';
+import { request } from 'http';
 
 @Controller('products')
 export class ProductsController {
@@ -53,14 +56,8 @@ export class ProductsController {
   }
 
   @Get()
-  findAll(@Query() query: { cat?: string; order?: string; orderBy?: string }) {
-    return this.productsService.findAll({
-      relations: ['category'],
-      order: query.orderBy
-        ? { [query.orderBy]: query.order }
-        : { product_createdAt: 'DESC' },
-      where: query.cat ? { categoryId: parseInt(query.cat) } : {},
-    });
+  findAll(@Query() query, @Request() req: any) {
+    return this.productsService.findAll(query);
   }
 
   @Get(':id')
