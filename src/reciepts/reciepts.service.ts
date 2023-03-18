@@ -58,8 +58,8 @@ export class RecieptsService {
       recieptDetail.rcd_total =
         recieptDetail.products.product_price * recieptDetail.rcd_amount;
       recieptDetail.reciepts = reciept;
-      await this.recieptDetailRepository.save(recieptDetail);
       reciept.rec_total = reciept.rec_total + recieptDetail.rcd_total;
+      await this.recieptDetailRepository.save(recieptDetail);
     }
     reciept.rec_total = reciept.rec_total - reciept.rec_discount;
     reciept.rec_changed = reciept.rec_received - reciept.rec_total;

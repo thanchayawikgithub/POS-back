@@ -28,7 +28,7 @@ export class CheckMaterial {
 
   @OneToMany(
     () => CheckMaterialDetial,
-    (checkmaterialdetail) => checkmaterialdetail.checkmaterial,
+    (checkMaterialDetail) => checkMaterialDetail.checkMaterial,
   )
-  checkmaterialdetails: CheckMaterialDetial[];
+  checkMaterialDetails: CheckMaterialDetial[];
 }

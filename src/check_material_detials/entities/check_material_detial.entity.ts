@@ -17,10 +17,10 @@ export class CheckMaterialDetial {
 
   @ManyToOne(
     () => CheckMaterial,
-    (checkmaterial) => checkmaterial.checkmaterialdetails,
+    (checkMaterial) => checkMaterial.checkMaterialDetails,
   )
-  checkmaterial: CheckMaterial;
+  checkMaterial: CheckMaterial;
 
-  @ManyToOne(() => Material, (material) => material.checkmaterialdetails)
+  @ManyToOne(() => Material, (material) => material.checkMaterialDetails)
   material: Material;
 }

@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CheckMaterial } from 'src/check_materials/entities/check_material.entity';
 import { Material } from 'src/materials/entities/material.entity';
 import { Repository } from 'typeorm';
 import { CreateCheckMaterialDetialDto } from './dto/create-check_material_detial.dto';
@@ -12,8 +11,6 @@ export class CheckMaterialDetialsService {
   constructor(
     @InjectRepository(CheckMaterialDetial)
     private checkMaterialDetailRepository: Repository<CheckMaterialDetial>,
-    @InjectRepository(CheckMaterial)
-    private checkMaterialRepository: Repository<CheckMaterial>,
     @InjectRepository(Material)
     private materialRepository: Repository<Material>,
   ) {}
@@ -21,9 +18,7 @@ export class CheckMaterialDetialsService {
     const material = await this.materialRepository.findOneBy({
       mat_id: createCheckMaterialDetialDto.MaterialId,
     });
-    const check_material = await this.checkMaterialRepository.findOneBy({
-      check_mat_id: createCheckMaterialDetialDto.CheckMaterialId,
-    });
+
     const check_material_detial = new CheckMaterialDetial();
     check_material_detial.cmd_name = material.mat_name;
     check_material_detial.cmd_qty_last = material.mat_quantity;
@@ -32,7 +27,6 @@ export class CheckMaterialDetialsService {
     check_material_detial.cmd_qty_expire =
       createCheckMaterialDetialDto.cmd_qty_expire;
     check_material_detial.material = material;
-    check_material_detial.checkmaterial = check_material;
 
     material.mat_quantity = createCheckMaterialDetialDto.cmd_qty_remain;
 
@@ -42,13 +36,13 @@ export class CheckMaterialDetialsService {
 
     return await this.checkMaterialDetailRepository.findOne({
       where: { cmd_id: check_material_detial.cmd_id },
-      relations: ['material', 'checkmaterial'],
+      relations: ['material'],
     });
   }
 
   findAll() {
     return this.checkMaterialDetailRepository.find({
-      relations: ['material', 'checkmaterial'],
+      relations: ['material'],
     });
   }
 

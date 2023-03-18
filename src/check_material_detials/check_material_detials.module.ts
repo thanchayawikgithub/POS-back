@@ -3,13 +3,10 @@ import { CheckMaterialDetialsService } from './check_material_detials.service';
 import { CheckMaterialDetialsController } from './check_material_detials.controller';
 import { CheckMaterialDetial } from './entities/check_material_detial.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CheckMaterial } from 'src/check_materials/entities/check_material.entity';
 import { Material } from 'src/materials/entities/material.entity';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([CheckMaterialDetial, CheckMaterial, Material]),
-  ],
+  imports: [TypeOrmModule.forFeature([CheckMaterialDetial, Material])],
   controllers: [CheckMaterialDetialsController],
   providers: [CheckMaterialDetialsService],
 })
