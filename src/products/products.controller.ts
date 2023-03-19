@@ -49,8 +49,11 @@ export class ProductsController {
   }
 
   @Get('category/:id')
-  findByCategory(@Param('id') id: string) {
-    return this.productsService.findByCategory(+id);
+  async findByCategory(
+    @Param('id') id: number,
+    @Query('keyword') keyword?: string,
+  ) {
+    return this.productsService.findByCategory(id, keyword);
   }
 
   @Get()

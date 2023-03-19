@@ -30,8 +30,15 @@ export class ProductsService {
     product.product_image = createProductDto.product_image;
     return this.productRepository.save(product);
   }
-  findByCategory(id: number) {
-    return this.productRepository.find({ where: { categoryId: id } });
+
+  findByCategory(id: number, keyword: string) {
+    const searchKeyword = keyword || '';
+    return this.productRepository.find({
+      where: {
+        categoryId: id,
+        product_name: Like(`%${searchKeyword}%`),
+      },
+    });
   }
 
   async findAll(query): Promise<Paginate> {
