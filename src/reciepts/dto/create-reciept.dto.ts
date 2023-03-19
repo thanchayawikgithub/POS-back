@@ -11,6 +11,10 @@ export class CreateRecieptDto {
   @IsNotEmpty()
   rec_received: number;
   @IsNotEmpty()
+  rec_changed: number;
+  @IsNotEmpty()
+  rec_total: number;
+  @IsNotEmpty()
   rec_payment: string;
   @IsNotEmpty()
   storeId: number;

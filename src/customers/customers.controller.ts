@@ -33,6 +33,11 @@ export class CustomersController {
     return this.customersService.findOne(+id);
   }
 
+  @Get('tel/:tel')
+  findOneByTel(@Param('tel') tel: string) {
+    return this.customersService.findOneByTel(tel);
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,

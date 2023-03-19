@@ -21,7 +21,14 @@ export class CustomersService {
   }
 
   findOne(id: number) {
-    return this.customersRepository.findOne({ where: { customer_id: id } });
+    return this.customersRepository.findOne({
+      where: { customer_id: id },
+      relations: ['reciepts'],
+    });
+  }
+
+  findOneByTel(tel: string) {
+    return this.customersRepository.findOne({ where: { customer_tel: tel } });
   }
 
   async update(id: number, updateCustomerDto: UpdateCustomerDto) {

@@ -39,13 +39,15 @@ export class RecieptsService {
     reciept.rec_queue = createRecieptDto.rec_queue;
     reciept.rec_time = createRecieptDto.rec_time;
     reciept.rec_discount = createRecieptDto.rec_discount;
-    reciept.rec_received = createRecieptDto.rec_received;
     reciept.rec_payment = createRecieptDto.rec_payment;
+
+    reciept.rec_total = createRecieptDto.rec_total;
+    reciept.rec_received = createRecieptDto.rec_received;
+    reciept.rec_changed = createRecieptDto.rec_changed;
     reciept.store = store;
     reciept.customer = customer;
     reciept.employee = employee;
-    reciept.rec_total = 0;
-    reciept.rec_changed = 0;
+
     await this.recieptRepository.save(reciept);
     for (const rec of createRecieptDto.recieptDetails) {
       const recieptDetail = new RecieptDetail();
@@ -58,21 +60,19 @@ export class RecieptsService {
       recieptDetail.rcd_total =
         recieptDetail.products.product_price * recieptDetail.rcd_amount;
       recieptDetail.reciepts = reciept;
-      reciept.rec_total = reciept.rec_total + recieptDetail.rcd_total;
       await this.recieptDetailRepository.save(recieptDetail);
     }
-    reciept.rec_total = reciept.rec_total - reciept.rec_discount;
-    reciept.rec_changed = reciept.rec_received - reciept.rec_total;
+
     await this.recieptRepository.save(reciept);
     return await this.recieptRepository.findOne({
       where: { rec_id: reciept.rec_id },
-      relations: ['recieptDetail'],
+      relations: ['recieptDetail', 'customer'],
     });
   }
 
   findAll() {
     return this.recieptRepository.find({
-      relations: ['recieptDetail'],
+      relations: ['recieptDetail', 'customer'],
     });
   }
 
