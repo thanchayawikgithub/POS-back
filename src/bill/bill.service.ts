@@ -1,6 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { BillDetail } from 'src/bill_details/entities/bill_detail.entity';
 import { Employee } from 'src/employees/entities/employee.entity';
+import { Material } from 'src/materials/entities/material.entity';
 import { Repository } from 'typeorm';
 import { CreateBillDto } from './dto/create-bill.dto';
 import { UpdateBillDto } from './dto/update-bill.dto';
@@ -13,6 +15,10 @@ export class BillService {
     private billRepository: Repository<Bill>,
     @InjectRepository(Employee)
     private employeeRepository: Repository<Employee>,
+    @InjectRepository(BillDetail)
+    private billDetailRepository: Repository<BillDetail>,
+    @InjectRepository(Material)
+    private materialRepository: Repository<Material>,
   ) {}
   async create(createBillDto: CreateBillDto) {
     const employee = await this.employeeRepository.findOneBy({
@@ -24,8 +30,25 @@ export class BillService {
     bill.bill_buy = createBillDto.bill_buy;
     bill.bill_change = createBillDto.bill_change;
     bill.employee = employee;
-
-    return this.billRepository.save(bill);
+    await this.billRepository.save(bill);
+    for (const bills of createBillDto.billDetails) {
+      const billDetail = new BillDetail();
+      billDetail.bill_detail_amount = bills.bill_detail_amount;
+      billDetail.materials = await this.materialRepository.findOneBy({
+        mat_id: bills.mat_id,
+      });
+      billDetail.bill_detail_name = billDetail.materials.mat_name;
+      billDetail.bill_detail_price = billDetail.materials.mat_price_per_unit;
+      billDetail.bill_detail_total =
+        billDetail.materials.mat_price_per_unit * billDetail.bill_detail_amount;
+      billDetail.bill = bill;
+      await this.billDetailRepository.save(billDetail);
+    }
+    await this.billRepository.save(bill);
+    return await this.billRepository.findOne({
+      where: { bill_id: bill.bill_id },
+      relations: ['employee', 'bill_details'],
+    });
   }
 
   findAll() {

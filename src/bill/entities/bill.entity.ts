@@ -47,5 +47,5 @@ export class Bill {
   employee: Employee;
 
   @OneToMany(() => BillDetail, (billDetail) => billDetail.bill)
-  bill_details: BillDetail;
+  bill_details: BillDetail[];
 }
