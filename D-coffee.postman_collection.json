@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "8857e26d-0804-406f-a6f1-e8c74f767692",
+		"_postman_id": "7685f936-b918-4ebb-96ce-88d73e523ed9",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25474366"
+		"_exporter_id": "25473042"
 	},
 	"item": [
 		{
@@ -1970,7 +1970,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \r\n  \"bill_shop_name\": \"D-Coffee Prachinburi\",\r\n  \"bill_total\": 200,\r\n  \"bill_buy\": 200,\r\n  \"bill_change\": 0,\r\n  \"employee_id\": 3\r\n}",
+							"raw": "{\r\n  \"employee_id\": 1,\r\n  \"bill_shop_name\": \"Eiei\",\r\n  \"bill_total\": 200,\r\n  \"bill_buy\": 100,\r\n  \"bill_change\": 50,\r\n  \"billDetails\": [\r\n      {\r\n      \"mat_id\": 8,\r\n      \"bill_detail_amount\":2\r\n      }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
