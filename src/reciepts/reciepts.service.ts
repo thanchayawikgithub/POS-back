@@ -5,7 +5,7 @@ import { Employee } from 'src/employees/entities/employee.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { RecieptDetail } from 'src/reciept_details/entities/reciept_detail.entity';
 import { Store } from 'src/stores/entities/store.entity';
-import { Repository } from 'typeorm';
+import { MoreThan, Repository } from 'typeorm';
 import { CreateRecieptDto } from './dto/create-reciept.dto';
 import { UpdateRecieptDto } from './dto/update-reciept.dto';
 import { Reciept } from './entities/reciept.entity';
@@ -66,18 +66,30 @@ export class RecieptsService {
     await this.recieptRepository.save(reciept);
     return await this.recieptRepository.findOne({
       where: { rec_id: reciept.rec_id },
-      relations: ['recieptDetail', 'customer'],
+      relations: ['recieptDetail', 'customer', 'employee', 'store'],
     });
   }
 
   findAll() {
     return this.recieptRepository.find({
-      relations: ['recieptDetail', 'customer'],
+      relations: ['recieptDetail', 'customer', 'employee', 'store'],
     });
   }
 
+  async findLast() {
+    const lastRecord = await this.recieptRepository.findOne({
+      order: { rec_id: 'DESC' },
+      where: { rec_id: MoreThan(0) }, // this will select the record with the highest rec_id
+      relations: ['recieptDetail', 'customer', 'employee', 'store'],
+    });
+    return lastRecord;
+  }
+
   findOne(id: number) {
-    return this.recieptRepository.findOneBy({ rec_id: id });
+    return this.recieptRepository.findOne({
+      where: { rec_id: id },
+      relations: ['recieptDetail', 'customer', 'employee', 'store'],
+    });
   }
 
   async update(id: number, updateRecieptDto: UpdateRecieptDto) {

@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7685f936-b918-4ebb-96ce-88d73e523ed9",
+		"_postman_id": "cff3ab61-c396-4450-a88e-71ac08f2da57",
 		"name": "D-coffee",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25473042"
+		"_exporter_id": "25472220"
 	},
 	"item": [
 		{
@@ -1630,6 +1630,24 @@
 									"key": "id",
 									"value": null
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Last Receipt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/reciepts/lastReceipt",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"reciepts",
+								"lastReceipt"
 							]
 						}
 					},

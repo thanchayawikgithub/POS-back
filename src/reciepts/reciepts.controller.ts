@@ -28,6 +28,11 @@ export class RecieptsController {
     return this.recieptsService.findAll();
   }
 
+  @Get('lastReceipt')
+  findLast() {
+    return this.recieptsService.findLast();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.recieptsService.findOne(+id);
