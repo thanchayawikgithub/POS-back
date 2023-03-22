@@ -36,15 +36,11 @@ export class MaterialsService {
     }
   }
 
-  async remove(mat_id: number) {
-    const material = await this.materialsRepository.findOne({
-      where: { mat_id: mat_id },
-    });
-    try {
-      const deletedMaterial = await this.materialsRepository.remove(material);
-      return deletedMaterial;
-    } catch (e) {
+  async remove(id: number) {
+    const material = await this.materialsRepository.findOneBy({ mat_id: id });
+    if (!material) {
       throw new NotFoundException();
     }
+    return this.materialsRepository.remove(material);
   }
 }
