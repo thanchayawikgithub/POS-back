@@ -41,6 +41,7 @@ import { CheckInOutsModule } from './check_in_outs/check_in_outs.module';
       username: 'wanons',
       password: 'password',
       database: 'coffee',
+      timezone: 'G',
       synchronize: true,
       entities: [
         Employee,

@@ -2,6 +2,8 @@ import { Customer } from 'src/customers/entities/customer.entity';
 import { Employee } from 'src/employees/entities/employee.entity';
 import { RecieptDetail } from 'src/reciept_details/entities/reciept_detail.entity';
 import { Store } from 'src/stores/entities/store.entity';
+
+import moment, { Moment } from 'moment-timezone';
 import {
   Column,
   CreateDateColumn,
@@ -11,6 +13,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  ValueTransformer,
 } from 'typeorm';
 
 @Entity()
@@ -31,11 +34,12 @@ export class Reciept {
   rec_changed: number;
   @Column()
   rec_payment: string;
-  @CreateDateColumn()
+
+  @CreateDateColumn({ type: 'timestamp' })
   rec_createdAt: Date;
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp' })
   rec_updatedAt: Date;
-  @DeleteDateColumn()
+  @DeleteDateColumn({ type: 'timestamp' })
   rec_deletedAt: Date;
 
   @OneToMany(() => RecieptDetail, (reciept_detail) => reciept_detail.reciepts)

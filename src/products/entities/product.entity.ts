@@ -33,13 +33,13 @@ export class Product {
   })
   product_image: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   product_createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp' })
   product_updatedAt: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ type: 'timestamp' })
   product_deletedAt: Date;
 
   @ManyToOne(() => Category, (category) => category.products)

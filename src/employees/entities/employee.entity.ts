@@ -47,13 +47,13 @@ export class Employee {
   @Column()
   employee_hourly_wage: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ type: 'timestamp' })
   deletedAt: Date;
 
   @OneToMany(() => Reciept, (reciept) => reciept.employee)

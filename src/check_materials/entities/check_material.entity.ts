@@ -14,10 +14,10 @@ export class CheckMaterial {
   @PrimaryGeneratedColumn()
   check_mat_id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   check_mat_date: Date;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   check_mat_time: Date;
 
   @ManyToOne(() => Employee, (employee) => employee.checkmaterials)

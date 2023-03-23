@@ -14,7 +14,7 @@ export class Salary {
   @PrimaryGeneratedColumn()
   ss_id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   ss_date: Date;
 
   @Column()
@@ -23,10 +23,10 @@ export class Salary {
   @Column()
   ss_salary: number;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedDate: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ type: 'timestamp' })
   deletedDate: Date;
 
   // @OneToMany(() => CheckInOut, (checkinout) => checkinout.salary)

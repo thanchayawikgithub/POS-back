@@ -19,10 +19,10 @@ export class Bill {
   @Column()
   bill_shop_name: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   bill_date: Date;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   bill_time: Date;
 
   @Column()
@@ -34,13 +34,13 @@ export class Bill {
   @Column()
   bill_change: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   bill_createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp' })
   bill_updatedAt: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ type: 'timestamp' })
   bill_deletedAt: Date;
 
   @ManyToOne(() => Employee, (employee) => employee.bill)

@@ -13,7 +13,7 @@ export class CheckInOut {
   @PrimaryGeneratedColumn()
   cio_id: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   cio_date: Date;
 
   @Column()
@@ -25,10 +25,10 @@ export class CheckInOut {
   @Column()
   cio_total_hour: number;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedDate: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ type: 'timestamp' })
   deletedDate: Date;
 
   // @ManyToOne(() => Employee, (employee) => employee.checkinouts)

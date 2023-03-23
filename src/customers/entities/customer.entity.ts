@@ -23,13 +23,13 @@ export class Customer {
   @Column()
   customer_point: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   createdDate: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedDate: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ type: 'timestamp' })
   deletedDate: Date;
 
   @OneToMany(() => Reciept, (reciept) => reciept.customer)

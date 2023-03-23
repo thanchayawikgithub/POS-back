@@ -29,13 +29,13 @@ export class Store {
   @Column({ length: 10 })
   store_tel: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ type: 'timestamp' })
   deletedAt: Date;
 
   @OneToMany(() => Reciept, (reciept) => reciept.store)
