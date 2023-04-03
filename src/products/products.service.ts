@@ -31,12 +31,17 @@ export class ProductsService {
     return this.productRepository.save(product);
   }
 
-  findByCategory(id: number, keyword: string) {
+  findByCategory(id: number, keyword: string, type: string) {
     const searchKeyword = keyword || '';
+    let selectedType = type || '';
+    if (selectedType === 'All') {
+      selectedType = '';
+    }
     return this.productRepository.find({
       where: {
         categoryId: id,
-        product_name: Like(`%${searchKeyword}%`),
+        product_name: Like(`${searchKeyword}%`),
+        product_type: Like(`%${selectedType}%`),
       },
     });
   }
