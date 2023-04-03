@@ -22,7 +22,7 @@ export class BillService {
   ) {}
   async create(createBillDto: CreateBillDto) {
     const employee = await this.employeeRepository.findOneBy({
-      employee_id: createBillDto.employee_id,
+      employee_id: createBillDto.employeeId,
     });
     const bill: Bill = new Bill();
     bill.bill_shop_name = createBillDto.bill_shop_name;
@@ -35,7 +35,7 @@ export class BillService {
       const billDetail = new BillDetail();
       billDetail.bill_detail_amount = bills.bill_detail_amount;
       billDetail.materials = await this.materialRepository.findOneBy({
-        mat_id: bills.mat_id,
+        mat_id: bills.materialId,
       });
       billDetail.bill_detail_name = billDetail.materials.mat_name;
       billDetail.bill_detail_price = billDetail.materials.mat_price_per_unit;
@@ -52,13 +52,15 @@ export class BillService {
   }
 
   findAll() {
-    return this.billRepository.find({ relations: ['employee'] });
+    return this.billRepository.find({
+      relations: ['employee', 'bill_details'],
+    });
   }
 
   findOne(id: number) {
     return this.billRepository.findOne({
       where: { bill_id: id },
-      relations: ['employee'],
+      relations: ['employee', 'bill_details'],
     });
   }
 

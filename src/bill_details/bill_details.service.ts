@@ -19,7 +19,7 @@ export class BillDetailsService {
   ) {}
   async create(createBillDetailDto: CreateBillDetailDto) {
     const material = await this.materialRepository.findOneBy({
-      mat_id: createBillDetailDto.mat_id,
+      mat_id: createBillDetailDto.materialId,
     });
     const bill_detail: BillDetail = new BillDetail();
     bill_detail.bill_detail_amount = createBillDetailDto.bill_detail_amount;
