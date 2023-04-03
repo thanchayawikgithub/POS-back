@@ -4,11 +4,13 @@ import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
+  Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
+@Entity()
 export class CheckInOut {
   @PrimaryGeneratedColumn()
   cio_id: number;
@@ -31,9 +33,9 @@ export class CheckInOut {
   @DeleteDateColumn({ type: 'timestamp' })
   deletedDate: Date;
 
-  // @ManyToOne(() => Employee, (employee) => employee.checkinouts)
-  // employee: Employee;
+  @ManyToOne(() => Employee, (employee) => employee.checkinouts)
+  employee: Employee;
 
-  // @ManyToOne(() => Salary, (salary) => salary.checkinouts)
-  // salary: Salary;
+  @ManyToOne(() => Salary, (salary) => salary.checkinouts)
+  salary: Salary;
 }

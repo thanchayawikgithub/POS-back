@@ -31,6 +31,7 @@ import { Bill } from './bill/entities/bill.entity';
 import { BillDetailsModule } from './bill_details/bill_details.module';
 import { BillDetail } from './bill_details/entities/bill_detail.entity';
 import { CheckInOutsModule } from './check_in_outs/check_in_outs.module';
+import { CheckInOut } from './check_in_outs/entities/check_in_out.entity';
 
 @Module({
   imports: [
@@ -56,6 +57,7 @@ import { CheckInOutsModule } from './check_in_outs/check_in_outs.module';
         Salary,
         Bill,
         BillDetail,
+        CheckInOut,
       ],
     }),
     EmployeesModule,

@@ -7,7 +7,7 @@ import { Employee } from 'src/employees/entities/employee.entity';
 import { Salary } from 'src/salaries/entities/salary.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CheckInOut, Employee, Salary])],
+  imports: [TypeOrmModule.forFeature([CheckInOut, Salary, Employee])],
   controllers: [CheckInOutsController],
   providers: [CheckInOutsService],
 })

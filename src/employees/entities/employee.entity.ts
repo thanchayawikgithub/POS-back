@@ -62,8 +62,8 @@ export class Employee {
   @OneToMany(() => CheckMaterial, (checkmaterial) => checkmaterial.employee)
   checkmaterials: CheckMaterial[];
 
-  // @OneToMany(() => CheckInOut, (checkinout) => checkinout.employee)
-  // checkinouts: CheckInOut[];
+  @OneToMany(() => CheckInOut, (checkinout) => checkinout.employee)
+  checkinouts: CheckInOut[];
 
   @OneToMany(() => Bill, (bill) => bill.employee)
   bill: Bill[];
