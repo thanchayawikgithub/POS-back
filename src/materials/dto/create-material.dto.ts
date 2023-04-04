@@ -13,6 +13,8 @@ export class CreateMaterialDto {
   @IsNotEmpty()
   mat_unit: string;
 
+  mat_shop_name: string;
+
   @IsNotEmpty()
   mat_price_per_unit: number;
 }

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { MaterialsService } from './materials.service';
 import { CreateMaterialDto } from './dto/create-material.dto';
@@ -31,6 +32,11 @@ export class MaterialsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.materialsService.findOne(+id);
+  }
+
+  @Get('/shopName/:shopName')
+  findByShopName(@Param('shopName') shopName: string) {
+    return this.materialsService.findByShopName(shopName);
   }
 
   @Patch(':id')

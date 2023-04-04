@@ -22,6 +22,9 @@ export class Material {
   @Column()
   mat_price_per_unit: number;
 
+  @Column()
+  mat_shop_name: string;
+
   @OneToMany(
     () => CheckMaterialDetial,
     (checkMaterialDetail) => checkMaterialDetail.checkMaterial,

@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { CreateMaterialDto } from './dto/create-material.dto';
 import { UpdateMaterialDto } from './dto/update-material.dto';
 import { Material } from './entities/material.entity';
@@ -22,6 +22,15 @@ export class MaterialsService {
 
   findOne(mat_id: number) {
     return this.materialsRepository.findOne({ where: { mat_id: mat_id } });
+  }
+
+  findByShopName(shopName: string) {
+    const searchShopName = shopName || '';
+    return this.materialsRepository.find({
+      where: {
+        mat_shop_name: Like(`${searchShopName}%`),
+      },
+    });
   }
 
   async update(mat_id: number, updateMaterialDto: UpdateMaterialDto) {
