@@ -22,7 +22,7 @@ export class RecieptDetailsService {
     });
     const reciept_detail: RecieptDetail = new RecieptDetail();
     reciept_detail.rcd_amount = createRecieptDetailDto.rcd_amount;
-    reciept_detail.rcd_name = product.product_name;
+    reciept_detail.rcd_name = createRecieptDetailDto.rcd_name;
     reciept_detail.rcd_price = createRecieptDetailDto.rcd_price;
     reciept_detail.rcd_total =
       reciept_detail.rcd_price * reciept_detail.rcd_amount;

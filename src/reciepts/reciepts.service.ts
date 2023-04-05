@@ -55,7 +55,7 @@ export class RecieptsService {
       recieptDetail.products = await this.productRepository.findOneBy({
         product_id: rec.productId,
       });
-      recieptDetail.rcd_name = recieptDetail.products.product_name;
+      recieptDetail.rcd_name = rec.rcd_name;
       recieptDetail.rcd_price = rec.rcd_price;
       recieptDetail.rcd_total = rec.rcd_price * rec.rcd_amount;
       recieptDetail.reciepts = reciept;

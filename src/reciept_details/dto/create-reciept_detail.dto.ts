@@ -5,5 +5,7 @@ export class CreateRecieptDetailDto {
   @IsNotEmpty()
   rcd_price: number;
   @IsNotEmpty()
+  rcd_name: string;
+  @IsNotEmpty()
   rcd_amount: number;
 }
