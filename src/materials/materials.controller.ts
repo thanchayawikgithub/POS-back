@@ -34,7 +34,7 @@ export class MaterialsController {
     return this.materialsService.findOne(+id);
   }
 
-  @Get('/shopName/:shopName')
+  @Get('shopName/:shopName')
   findByShopName(@Param('shopName') shopName: string) {
     return this.materialsService.findByShopName(shopName);
   }
