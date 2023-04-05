@@ -13,9 +13,10 @@ export class CreateCheckInOutDto {
   @IsNotEmpty()
   cio_time_in: number;
 
+  status: string;
+
   @IsNotEmpty()
   cio_time_out: number;
 
-  @IsNotEmpty()
   cio_total_hour: number;
 }

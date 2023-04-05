@@ -20,7 +20,9 @@ export class Employee {
   @Column()
   employee_name: string;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   employee_login: string;
 
   @Column()

@@ -19,13 +19,10 @@ export class CheckInOut {
   cio_date: Date;
 
   @Column()
-  cio_time_in: number;
-
-  @Column()
-  cio_time_out: number;
-
-  @Column()
   cio_total_hour: number;
+
+  @Column()
+  status: string;
 
   @UpdateDateColumn({ type: 'timestamp' })
   updatedDate: Date;
