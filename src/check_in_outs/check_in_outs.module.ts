@@ -5,9 +5,13 @@ import { CheckInOut } from './entities/check_in_out.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Employee } from 'src/employees/entities/employee.entity';
 import { Salary } from 'src/salaries/entities/salary.entity';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CheckInOut, Salary, Employee])],
+  imports: [
+    TypeOrmModule.forFeature([CheckInOut, Salary, Employee]),
+    AuthModule,
+  ],
   controllers: [CheckInOutsController],
   providers: [CheckInOutsService],
 })

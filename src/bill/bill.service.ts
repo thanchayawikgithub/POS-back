@@ -43,6 +43,10 @@ export class BillService {
         billDetail.materials.mat_price_per_unit * billDetail.bill_detail_amount;
       billDetail.bill = bill;
       await this.billDetailRepository.save(billDetail);
+
+      const material = billDetail.materials;
+      material.mat_quantity += bills.bill_detail_amount;
+      await this.materialRepository.save(material);
     }
     await this.billRepository.save(bill);
     return await this.billRepository.findOne({

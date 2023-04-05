@@ -29,7 +29,15 @@ export class BillDetailsService {
       material.mat_price_per_unit * bill_detail.bill_detail_amount;
     bill_detail.materials = material;
 
-    return this.billDetailRepository.save(bill_detail);
+    material.mat_quantity += createBillDetailDto.bill_detail_amount;
+
+    await this.billDetailRepository.save(bill_detail);
+
+    await this.materialRepository.save(material);
+
+    return await this.billDetailRepository.findOne({
+      where: { bill_detail_id: bill_detail.bill_detail_id },
+    });
   }
 
   findAll() {

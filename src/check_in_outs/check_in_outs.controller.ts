@@ -6,18 +6,32 @@ import {
   Patch,
   Param,
   Delete,
+  BadRequestException,
 } from '@nestjs/common';
 import { CheckInOutsService } from './check_in_outs.service';
 import { CreateCheckInOutDto } from './dto/create-check_in_out.dto';
 import { UpdateCheckInOutDto } from './dto/update-check_in_out.dto';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller('check-in-outs')
 export class CheckInOutsController {
-  constructor(private readonly checkInOutsService: CheckInOutsService) {}
+  constructor(
+    private readonly checkInOutsService: CheckInOutsService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Post()
-  create(@Body() createCheckInOutDto: CreateCheckInOutDto) {
-    return this.checkInOutsService.create(createCheckInOutDto);
+  async create(
+    @Body() createCheckInOutDto: { username: string; password: string },
+  ) {
+    const user: { employee_id: number } = await this.authService.validateUser(
+      createCheckInOutDto.username,
+      createCheckInOutDto.password,
+    );
+    if (!user) {
+      throw new BadRequestException();
+    }
+    return this.checkInOutsService.create(user);
   }
 
   @Get()
