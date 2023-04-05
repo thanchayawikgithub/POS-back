@@ -24,7 +24,10 @@ export class Product {
   @Column()
   product_size: string;
 
-  @Column({ type: 'float' })
+  @Column()
+  product_size_unit: string;
+
+  @Column()
   product_price: number;
 
   @Column({

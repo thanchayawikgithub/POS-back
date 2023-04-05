@@ -56,9 +56,8 @@ export class RecieptsService {
         product_id: rec.productId,
       });
       recieptDetail.rcd_name = recieptDetail.products.product_name;
-      recieptDetail.rcd_price = recieptDetail.products.product_price;
-      recieptDetail.rcd_total =
-        recieptDetail.products.product_price * recieptDetail.rcd_amount;
+      recieptDetail.rcd_price = rec.rcd_price;
+      recieptDetail.rcd_total = rec.rcd_price * rec.rcd_amount;
       recieptDetail.reciepts = reciept;
       await this.recieptDetailRepository.save(recieptDetail);
     }

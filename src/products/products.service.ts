@@ -26,6 +26,7 @@ export class ProductsService {
     product.product_name = createProductDto.product_name;
     product.product_type = createProductDto.product_type;
     product.product_size = createProductDto.product_size;
+    product.product_size_unit = createProductDto.product_size_unit;
     product.product_price = createProductDto.product_price;
     product.product_image = createProductDto.product_image;
     return this.productRepository.save(product);

@@ -23,9 +23,9 @@ export class RecieptDetailsService {
     const reciept_detail: RecieptDetail = new RecieptDetail();
     reciept_detail.rcd_amount = createRecieptDetailDto.rcd_amount;
     reciept_detail.rcd_name = product.product_name;
-    reciept_detail.rcd_price = product.product_price;
+    reciept_detail.rcd_price = createRecieptDetailDto.rcd_price;
     reciept_detail.rcd_total =
-      product.product_price * reciept_detail.rcd_amount;
+      reciept_detail.rcd_price * reciept_detail.rcd_amount;
     reciept_detail.products = product;
 
     return this.recieptdetailRepository.save(reciept_detail);

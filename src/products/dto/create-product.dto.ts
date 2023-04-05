@@ -12,6 +12,9 @@ export class CreateProductDto {
   product_size: string;
 
   @IsNotEmpty()
+  product_size_unit: string;
+
+  @IsNotEmpty()
   product_price: number;
 
   product_image = 'no_img_avaliable.jpg';
