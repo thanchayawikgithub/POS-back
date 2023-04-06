@@ -1,3 +1,4 @@
+import { check } from 'prettier';
 import { Employee } from 'src/employees/entities/employee.entity';
 import { Salary } from 'src/salaries/entities/salary.entity';
 import {
@@ -18,17 +19,23 @@ export class CheckInOut {
   @CreateDateColumn({ type: 'timestamp' })
   cio_date: Date;
 
-  @Column()
+  @CreateDateColumn({ type: 'timestamp' })
+  cio_time_in: Date;
+
+  @Column({ default: 0 })
   cio_total_hour: number;
 
-  @Column()
+  @Column({ default: 'checked in' })
   status: string;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  updatedDate: Date;
+  cio_time_out: Date;
 
   @DeleteDateColumn({ type: 'timestamp' })
   deletedDate: Date;
+
+  @Column()
+  EmployeeId: number;
 
   @ManyToOne(() => Employee, (employee) => employee.checkinouts)
   employee: Employee;
