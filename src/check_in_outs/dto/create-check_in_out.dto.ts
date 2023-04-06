@@ -1,9 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 
 export class CreateCheckInOutDto {
-  @IsNotEmpty()
-  EmployeeId: number;
-
   // @IsNotEmpty()
   // SummarySalaryId: number;
 

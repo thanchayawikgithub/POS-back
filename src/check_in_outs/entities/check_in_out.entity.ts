@@ -28,8 +28,11 @@ export class CheckInOut {
   @Column({ default: 'checked in' })
   status: string;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @Column({ type: 'timestamp', default: null })
   cio_time_out: Date;
+
+  @UpdateDateColumn({ type: 'timestamp' })
+  updatedDate: Date;
 
   @DeleteDateColumn({ type: 'timestamp' })
   deletedDate: Date;

@@ -1,10 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { CreateCheckInOutDto } from './dto/create-check_in_out.dto';
 import { UpdateCheckInOutDto } from './dto/update-check_in_out.dto';
 import { CheckInOut } from './entities/check_in_out.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Employee } from 'src/employees/entities/employee.entity';
+import { now } from 'moment';
 
 @Injectable()
 export class CheckInOutsService {
@@ -36,14 +41,44 @@ export class CheckInOutsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} checkInOut`;
+    return this.checkInOutRepository.findOne({
+      where: { cio_id: id },
+      relations: ['employee'],
+    });
   }
 
-  update(id: number, updateCheckInOutDto: UpdateCheckInOutDto) {
-    return `This action updates a #${id} checkInOut`;
+  async update(id: number, user: { employee_id: number }) {
+    const employee = await this.employeeRepository.findOneBy({
+      employee_id: user.employee_id,
+    });
+    const check_in_out = await this.checkInOutRepository.findOneBy({
+      cio_id: id,
+    });
+    if (!check_in_out) {
+      throw new NotFoundException();
+    } else if (check_in_out.EmployeeId !== employee.employee_id) {
+      throw new UnauthorizedException();
+    }
+    check_in_out.cio_time_out = new Date();
+    check_in_out.status = 'checked out';
+
+    // calculate the difference in hours between createdAt and cio_time_out timestamps
+    const diffMillis =
+      check_in_out.cio_time_out.getTime() - check_in_out.cio_time_in.getTime();
+    const diffHours = diffMillis / (1000 * 60 * 60);
+    check_in_out.cio_total_hour = diffHours;
+
+    // const updateCheckInOut = { ...check_in_out, ...updateCheckInOutDto };
+    return this.checkInOutRepository.save(check_in_out);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} checkInOut`;
+  async remove(id: number) {
+    const check_in_out = await this.checkInOutRepository.findOneBy({
+      cio_id: id,
+    });
+    if (!check_in_out) {
+      throw new NotFoundException();
+    }
+    return this.checkInOutRepository.softRemove(check_in_out);
   }
 }

@@ -45,11 +45,24 @@ export class CheckInOutsController {
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
-    @Body() updateCheckInOutDto: UpdateCheckInOutDto,
+    @Body()
+    updateCheckInOutDto: {
+      username: string;
+      password: string;
+      status: string;
+      cio_total_hour: number;
+    },
   ) {
-    return this.checkInOutsService.update(+id, updateCheckInOutDto);
+    const user: { employee_id: number } = await this.authService.validateUser(
+      updateCheckInOutDto.username,
+      updateCheckInOutDto.password,
+    );
+    if (!user) {
+      throw new BadRequestException();
+    }
+    return this.checkInOutsService.update(+id, user);
   }
 
   @Delete(':id')
