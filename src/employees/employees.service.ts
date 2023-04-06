@@ -77,6 +77,6 @@ export class EmployeesService {
     if (!employee) {
       throw new NotFoundException();
     }
-    return this.employeesRepository.softRemove(employee);
+    return this.employeesRepository.remove(employee);
   }
 }
