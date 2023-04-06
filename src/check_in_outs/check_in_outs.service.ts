@@ -69,7 +69,11 @@ export class CheckInOutsService {
     check_in_out.cio_total_hour = diffHours;
 
     // const updateCheckInOut = { ...check_in_out, ...updateCheckInOutDto };
-    return this.checkInOutRepository.save(check_in_out);
+    await this.checkInOutRepository.save(check_in_out);
+    return this.checkInOutRepository.findOne({
+      where: { cio_id: check_in_out.cio_id },
+      relations: ['employee'],
+    });
   }
 
   async remove(id: number) {
