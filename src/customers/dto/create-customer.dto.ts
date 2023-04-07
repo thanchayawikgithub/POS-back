@@ -9,6 +9,5 @@ export class CreateCustomerDto {
   @Length(10)
   customer_tel: string;
 
-  @IsNotEmpty()
   customer_point: number;
 }

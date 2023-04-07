@@ -63,6 +63,11 @@ export class CheckInOutsService {
     check_in_out.status = 'checked out';
 
     // calculate the difference in hours between createdAt and cio_time_out timestamps
+    // Math.abs(
+    //   (check_in_out.cio_time_out.getTime() -
+    //     check_in_out.cio_time_in.getTime()) /
+    //     3600000,
+    // );
     const diffMillis =
       check_in_out.cio_time_out.getTime() - check_in_out.cio_time_in.getTime();
     const diffHours = diffMillis / (1000 * 60 * 60);

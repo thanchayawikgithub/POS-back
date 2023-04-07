@@ -5,6 +5,6 @@ export class CreateCheckMaterialDetialDto {
   MaterialId: number;
   @IsNotEmpty()
   cmd_qty_remain: number;
-  @IsNotEmpty()
-  cmd_qty_expire: Date;
+
+  cmd_qty_expire: number;
 }

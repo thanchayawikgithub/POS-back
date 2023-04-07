@@ -12,8 +12,8 @@ export class CheckMaterialDetial {
   cmd_qty_last: number;
   @Column()
   cmd_qty_remain: number;
-  @Column()
-  cmd_qty_expire: Date;
+  @Column({ default: 0 })
+  cmd_qty_expire: number;
 
   @ManyToOne(
     () => CheckMaterial,

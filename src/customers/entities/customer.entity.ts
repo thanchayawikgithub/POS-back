@@ -20,7 +20,7 @@ export class Customer {
   @Column()
   customer_tel: string;
 
-  @Column()
+  @Column({ default: 0 })
   customer_point: number;
 
   @CreateDateColumn({ type: 'timestamp' })
