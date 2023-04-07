@@ -40,6 +40,9 @@ export class CheckInOut {
   @Column()
   EmployeeId: number;
 
+  @Column()
+  salaryId: number;
+
   @ManyToOne(() => Employee, (employee) => employee.checkinouts)
   employee: Employee;
 

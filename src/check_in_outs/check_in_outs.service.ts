@@ -10,6 +10,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Employee } from 'src/employees/entities/employee.entity';
 import { now } from 'moment';
+import { Salary } from 'src/salaries/entities/salary.entity';
 
 @Injectable()
 export class CheckInOutsService {
@@ -18,6 +19,8 @@ export class CheckInOutsService {
     private checkInOutRepository: Repository<CheckInOut>,
     @InjectRepository(Employee)
     private employeeRepository: Repository<Employee>,
+    @InjectRepository(Salary)
+    private salaryRepository: Repository<Salary>,
   ) {}
   async create(user: { employee_id: number }) {
     const check_in_out: CheckInOut = new CheckInOut();
@@ -75,6 +78,9 @@ export class CheckInOutsService {
 
     // const updateCheckInOut = { ...check_in_out, ...updateCheckInOutDto };
     await this.checkInOutRepository.save(check_in_out);
+    const salary = await this.salaryRepository.find({
+      where: { ss_id: check_in_out.salaryId },
+    });
     return this.checkInOutRepository.findOne({
       where: { cio_id: check_in_out.cio_id },
       relations: ['employee'],

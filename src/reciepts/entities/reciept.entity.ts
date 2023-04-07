@@ -3,7 +3,6 @@ import { Employee } from 'src/employees/entities/employee.entity';
 import { RecieptDetail } from 'src/reciept_details/entities/reciept_detail.entity';
 import { Store } from 'src/stores/entities/store.entity';
 
-import moment, { Moment } from 'moment-timezone';
 import {
   Column,
   CreateDateColumn,
@@ -13,7 +12,6 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  ValueTransformer,
 } from 'typeorm';
 
 @Entity()
@@ -24,7 +22,7 @@ export class Reciept {
   rec_queue: number;
   @Column()
   rec_time: number;
-  @Column()
+  @Column({ default: 0 })
   rec_discount: number;
   @Column()
   rec_total: number;

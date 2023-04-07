@@ -6,7 +6,7 @@ export class CreateRecieptDto {
   rec_queue: number;
   @IsNotEmpty()
   rec_time: number;
-  @IsNotEmpty()
+
   rec_discount: number;
   @IsNotEmpty()
   rec_received: number;

@@ -59,10 +59,16 @@ export class RecieptsService {
       recieptDetail.rcd_price = rec.rcd_price;
       recieptDetail.rcd_total = rec.rcd_price * rec.rcd_amount;
       recieptDetail.reciepts = reciept;
+
+      //increase point by amount
+      customer.customer_point += recieptDetail.rcd_amount;
       await this.recieptDetailRepository.save(recieptDetail);
     }
 
     await this.recieptRepository.save(reciept);
+
+    //save customer
+    await this.customerRepository.save(customer);
     return await this.recieptRepository.findOne({
       where: { rec_id: reciept.rec_id },
       relations: ['recieptDetail', 'customer', 'employee', 'store'],

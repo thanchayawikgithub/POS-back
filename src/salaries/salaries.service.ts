@@ -13,7 +13,6 @@ export class SalariesService {
   ) {}
 
   create(createSalaryDto: CreateSalaryDto) {
-    const salary: Salary = new Salary();
     return this.salariesRepository.save(createSalaryDto);
   }
 
