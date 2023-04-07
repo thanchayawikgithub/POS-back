@@ -1,9 +1,11 @@
 import { CheckInOut } from 'src/check_in_outs/entities/check_in_out.entity';
+import { Employee } from 'src/employees/entities/employee.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -31,4 +33,10 @@ export class Salary {
 
   @OneToMany(() => CheckInOut, (checkinout) => checkinout.salary)
   checkinouts: CheckInOut[];
+
+  @ManyToOne(() => Employee, (employee) => employee.salary)
+  employee: Employee;
+
+  @Column()
+  EmployeeId: number;
 }

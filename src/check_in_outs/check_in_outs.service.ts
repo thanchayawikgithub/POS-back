@@ -78,9 +78,23 @@ export class CheckInOutsService {
 
     // const updateCheckInOut = { ...check_in_out, ...updateCheckInOutDto };
     await this.checkInOutRepository.save(check_in_out);
-    const salary = await this.salaryRepository.find({
-      where: { ss_id: check_in_out.salaryId },
-    });
+    // const salary = await this.employeeRepository.find({
+    //   where: { employee_id: check_in_out.EmployeeId },
+    // });
+
+    //check ว่าเคยมีใบเงินเดือนหรือยัง
+    // const employeeSalary = this.salaryRepository.findOne({
+    //   where: { EmployeeId: employee.employee_id },
+    // });
+    // employeeSalary =
+    // if (employeeSalary) {
+
+    //   await this.
+    // } else {
+    //   employeeSalary.ss_work_hour += check_in_out.cio_total_hour
+    //   employeeSalary.ss_salary = (await employeeSalary).ss_work_hour * employee.employee_hourly_wage
+    //   await this.salaryRepository.save(employeeSalary);
+    // }
     return this.checkInOutRepository.findOne({
       where: { cio_id: check_in_out.cio_id },
       relations: ['employee'],
