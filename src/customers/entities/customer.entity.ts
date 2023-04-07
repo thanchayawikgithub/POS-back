@@ -17,10 +17,10 @@ export class Customer {
   @Column()
   customer_name: string;
 
-  @Column()
+  @Column({ unique: true })
   customer_tel: string;
 
-  @Column({ default: 0 })
+  @Column({ default: 10 })
   customer_point: number;
 
   @CreateDateColumn({ type: 'timestamp' })
