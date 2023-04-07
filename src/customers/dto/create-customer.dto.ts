@@ -2,7 +2,7 @@ import { IsNotEmpty, Length } from 'class-validator';
 
 export class CreateCustomerDto {
   @IsNotEmpty()
-  @Length(4, 16)
+  @Length(1, 16)
   customer_name: string;
 
   @IsNotEmpty()
