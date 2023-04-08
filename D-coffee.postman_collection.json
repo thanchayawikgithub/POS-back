@@ -570,7 +570,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"employee_name\": \"than\",\r\n    \"employee_login\": \"than\",\r\n    \"employee_password\": \"Pass@1234\",\r\n    \"employee_province\": \"chonburi\",\r\n    \"employee_district\": \"mueng\",\r\n    \"employee_subdistrict\": \"sansuk\",\r\n    \"employee_tel\": \"0982131311\",\r\n    \"employee_email\": \"1234@gmail.com\",\r\n    \"employee_position\": \"admin\",\r\n    \"employee_hourly_wage\": 40\r\n}",
+							"raw": "{\r\n    \"employee_name\": \"admin\",\r\n    \"employee_login\": \"admin\",\r\n    \"employee_password\": \"Pass@1234\",\r\n    \"employee_province\": \"chonburi\",\r\n    \"employee_district\": \"mueng\",\r\n    \"employee_subdistrict\": \"sansuk\",\r\n    \"employee_tel\": \"0982131311\",\r\n    \"employee_email\": \"1234@gmail.com\",\r\n    \"employee_position\": \"admin\",\r\n    \"employee_hourly_wage\": 60\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -740,7 +740,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"customer_name\" : \"Customer 6\",\r\n    \"customer_tel\" : \"0985898578\",\r\n    \"customer_point\" : 10\r\n}",
+							"raw": "{\r\n    \"customer_name\" : \"Customer 6\",\r\n    \"customer_tel\" : \"0985898578\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1496,7 +1496,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"mat_name\": \"Coffee ฺBeans\",\r\n    \"mat_min_quantity\": 5,\r\n    \"mat_quantity\": 10,\r\n    \"mat_unit\": 5,\r\n    \"mat_price_per_unit\": 40\r\n}",
+							"raw": "{\r\n    \"mat_name\": \"Coffee ฺBeans\",\r\n    \"mat_min_quantity\": 5,\r\n    \"mat_quantity\": 10,\r\n    \"mat_unit\": \"Kg.\",\r\n    \"mat_price_per_unit\": 150,\r\n    \"mat_shop_name\": \"Makro\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2135,7 +2135,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"Pass@1234\"\r\n}",
+							"raw": "{\r\n    \"username\": \"than\",\r\n    \"password\": \"than11014\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2188,18 +2188,37 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "get all",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{server}}/check-in-outs/",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"check-in-outs",
+								""
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "patch / checkout",
 					"request": {
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"username\":\"than\",\r\n\"password\":\"than11014\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{server}}/check-in-outs/:id",
 							"host": [
@@ -2214,6 +2233,52 @@
 									"key": "id",
 									"value": null
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Salary",
+			"item": [
+				{
+					"name": "create summarysalary",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/salaries/:id",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"salaries",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get summarysalary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/salaries",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"salaries"
 							]
 						}
 					},
@@ -2260,7 +2325,7 @@
 		},
 		{
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3ViIjoxLCJpYXQiOjE2ODAzNzEyMzYsImV4cCI6MTY4Mjc5MDQzNn0.cZmwa9rFYpbYxJjb8XbSqGvOYOsL1-mXpuP4wg1kZVQ",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRoYW4iLCJzdWIiOjEsImlhdCI6MTY4MDgzMzYzMywiZXhwIjoxNjgzMjUyODMzfQ.dxTxc9OBthCOz5avCv4CALDq6dQ2k_BVhl8DIBjVsRo",
 			"type": "string"
 		}
 	]
