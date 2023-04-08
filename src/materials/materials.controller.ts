@@ -6,9 +6,10 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
   UseInterceptors,
-  Res,
   UploadedFile,
+  Res,
 } from '@nestjs/common';
 import { MaterialsService } from './materials.service';
 import { CreateMaterialDto } from './dto/create-material.dto';
@@ -103,7 +104,4 @@ export class MaterialsController {
   remove(@Param('id') id: string) {
     return this.materialsService.remove(+id);
   }
-}
-function uuidv4() {
-  throw new Error('Function not implemented.');
 }
