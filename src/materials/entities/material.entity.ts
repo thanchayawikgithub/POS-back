@@ -25,6 +25,12 @@ export class Material {
   @Column()
   mat_shop_name: string;
 
+  @Column({
+    length: '128',
+    default: 'no_img_avaliable.jpg',
+  })
+  mat_image: string;
+
   @OneToMany(
     () => CheckMaterialDetial,
     (checkMaterialDetail) => checkMaterialDetail.checkMaterial,

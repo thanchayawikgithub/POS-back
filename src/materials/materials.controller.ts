@@ -6,24 +6,45 @@ import {
   Patch,
   Param,
   Delete,
-  Query,
+  UseInterceptors,
+  Res,
+  UploadedFile,
 } from '@nestjs/common';
 import { MaterialsService } from './materials.service';
 import { CreateMaterialDto } from './dto/create-material.dto';
 import { UpdateMaterialDto } from './dto/update-material.dto';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { extname } from 'path';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { Response } from 'express';
 
-@UseGuards(JwtAuthGuard)
 @Controller('materials')
 export class MaterialsController {
   constructor(private readonly materialsService: MaterialsService) {}
 
   @Post()
-  create(@Body() createMaterialDto: CreateMaterialDto) {
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './mat_images',
+        filename: (req, file, cb) => {
+          const name = uuidv4();
+          return cb(null, name + extname(file.originalname));
+        },
+      }),
+    }),
+  )
+  create(
+    @Body() createMaterialDto: CreateMaterialDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    createMaterialDto.mat_image = file.filename;
     return this.materialsService.create(createMaterialDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.materialsService.findAll();
@@ -39,16 +60,50 @@ export class MaterialsController {
     return this.materialsService.findByShopName(shopName);
   }
 
+  @Get(':id/image')
+  async getImage(@Param('id') id: string, @Res() res: Response) {
+    const mat = await this.materialsService.findOne(+id);
+    res.sendFile(mat.mat_image, { root: './mat_images' });
+  }
+
+  @Get('image/:imageFile')
+  async getImageByFileNmae(
+    @Param('imageFile') imageFile: string,
+    @Res() res: Response,
+  ) {
+    res.sendFile(imageFile, { root: './mat_images' });
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
+  @UseInterceptors(
+    FileInterceptor('file', {
+      storage: diskStorage({
+        destination: './mat_images',
+        filename: (req, file, cb) => {
+          const name = uuidv4();
+          return cb(null, name + extname(file.originalname));
+        },
+      }),
+    }),
+  )
   update(
     @Param('id') id: string,
     @Body() updateMaterialDto: UpdateMaterialDto,
+    @UploadedFile() file: Express.Multer.File,
   ) {
+    if (file) {
+      updateMaterialDto.mat_image = file.filename;
+    }
     return this.materialsService.update(+id, updateMaterialDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.materialsService.remove(+id);
   }
+}
+function uuidv4() {
+  throw new Error('Function not implemented.');
 }

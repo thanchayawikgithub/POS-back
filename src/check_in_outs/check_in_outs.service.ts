@@ -62,39 +62,24 @@ export class CheckInOutsService {
     } else if (check_in_out.EmployeeId !== employee.employee_id) {
       throw new UnauthorizedException();
     }
-    check_in_out.cio_time_out = new Date();
+    check_in_out.cio_time_out = new Date('2023-04-08T11:41:09.524Z');
     check_in_out.status = 'checked out';
 
-    // calculate the difference in hours between createdAt and cio_time_out timestamps
-    // Math.abs(
-    //   (check_in_out.cio_time_out.getTime() -
-    //     check_in_out.cio_time_in.getTime()) /
-    //     3600000,
-    // );
-    const diffMillis =
-      check_in_out.cio_time_out.getTime() - check_in_out.cio_time_in.getTime();
-    const diffHours = diffMillis / (1000 * 60 * 60);
-    check_in_out.cio_total_hour = diffHours;
+    //calculate the difference in hours between createdAt and cio_time_out timestamps
+    const totalHour = Math.abs(
+      (check_in_out.cio_time_out.getTime() -
+        check_in_out.cio_time_in.getTime()) /
+        3600000,
+    );
 
-    // const updateCheckInOut = { ...check_in_out, ...updateCheckInOutDto };
+    check_in_out.cio_total_hour = totalHour;
+    // const diffMillis =
+    //   check_in_out.cio_time_out.getTime() - check_in_out.cio_time_in.getTime();
+    // const diffHours = diffMillis / (1000 * 60 * 60);
+    // check_in_out.cio_total_hour = diffHours;
+
     await this.checkInOutRepository.save(check_in_out);
-    // const salary = await this.employeeRepository.find({
-    //   where: { employee_id: check_in_out.EmployeeId },
-    // });
 
-    //check ว่าเคยมีใบเงินเดือนหรือยัง
-    // const employeeSalary = this.salaryRepository.findOne({
-    //   where: { EmployeeId: employee.employee_id },
-    // });
-    // employeeSalary =
-    // if (employeeSalary) {
-
-    //   await this.
-    // } else {
-    //   employeeSalary.ss_work_hour += check_in_out.cio_total_hour
-    //   employeeSalary.ss_salary = (await employeeSalary).ss_work_hour * employee.employee_hourly_wage
-    //   await this.salaryRepository.save(employeeSalary);
-    // }
     return this.checkInOutRepository.findOne({
       where: { cio_id: check_in_out.cio_id },
       relations: ['employee'],

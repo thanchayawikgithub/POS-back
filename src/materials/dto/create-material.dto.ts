@@ -15,6 +15,8 @@ export class CreateMaterialDto {
 
   mat_shop_name: string;
 
+  mat_image = 'no_img_avaliable.jpg';
+
   @IsNotEmpty()
   mat_price_per_unit: number;
 }
