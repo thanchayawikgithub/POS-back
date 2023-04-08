@@ -6,16 +6,9 @@ import {
   Patch,
   Param,
   Delete,
-<<<<<<< HEAD
-  Query,
-  UseInterceptors,
-  UploadedFile,
-  Res,
-=======
   UseInterceptors,
   Res,
   UploadedFile,
->>>>>>> 1c821f10910c2024d6a9c830b361d9cec0360eef
 } from '@nestjs/common';
 import { MaterialsService } from './materials.service';
 import { CreateMaterialDto } from './dto/create-material.dto';
@@ -25,11 +18,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { extname } from 'path';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-<<<<<<< HEAD
-=======
-import { extname } from 'path';
-import { FileInterceptor } from '@nestjs/platform-express';
->>>>>>> 1c821f10910c2024d6a9c830b361d9cec0360eef
 import { diskStorage } from 'multer';
 import { Response } from 'express';
 
@@ -56,10 +44,6 @@ export class MaterialsController {
     createMaterialDto.mat_image = file.filename;
     return this.materialsService.create(createMaterialDto);
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> 1c821f10910c2024d6a9c830b361d9cec0360eef
   @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
