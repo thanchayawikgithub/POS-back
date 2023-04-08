@@ -34,7 +34,9 @@ export class EmployeesService {
   }
 
   findAll() {
-    return this.employeesRepository.find();
+    return this.employeesRepository.find({
+      relations: ['salaries'],
+    });
   }
 
   async findOne(id: number) {

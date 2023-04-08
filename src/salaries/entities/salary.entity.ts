@@ -34,9 +34,9 @@ export class Salary {
   @OneToMany(() => CheckInOut, (checkinout) => checkinout.salary)
   checkinouts: CheckInOut[];
 
-  @ManyToOne(() => Employee, (employee) => employee.salary)
+  @ManyToOne(() => Employee, (employee) => employee.salaries)
   employee: Employee;
 
-  @Column()
+  @Column({ default: null })
   EmployeeId: number;
 }

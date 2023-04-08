@@ -72,5 +72,5 @@ export class Employee {
   bill: Bill[];
 
   @OneToMany(() => Salary, (salary) => salary.employee)
-  salary: Salary[];
+  salaries: Salary[];
 }

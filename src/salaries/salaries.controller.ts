@@ -8,16 +8,15 @@ import {
   Delete,
 } from '@nestjs/common';
 import { SalariesService } from './salaries.service';
-import { CreateSalaryDto } from './dto/create-salary.dto';
 import { UpdateSalaryDto } from './dto/update-salary.dto';
 
 @Controller('salaries')
 export class SalariesController {
   constructor(private readonly salariesService: SalariesService) {}
 
-  @Post()
-  create(@Body() createSalaryDto: CreateSalaryDto) {
-    return this.salariesService.create(createSalaryDto);
+  @Post(':id')
+  create(@Param('id') id: number) {
+    return this.salariesService.create(id);
   }
 
   @Get()

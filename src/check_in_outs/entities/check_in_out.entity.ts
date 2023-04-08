@@ -40,7 +40,7 @@ export class CheckInOut {
   @Column()
   EmployeeId: number;
 
-  @Column()
+  @Column({ default: null })
   SalaryId: number;
 
   @ManyToOne(() => Employee, (employee) => employee.checkinouts)
