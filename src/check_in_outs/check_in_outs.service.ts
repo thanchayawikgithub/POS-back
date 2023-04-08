@@ -39,6 +39,7 @@ export class CheckInOutsService {
 
   findAll() {
     return this.checkInOutRepository.find({
+      where: { status: 'checked out' },
       relations: ['employee'],
     });
   }
