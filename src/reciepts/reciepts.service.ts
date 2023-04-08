@@ -48,6 +48,12 @@ export class RecieptsService {
     reciept.customer = customer;
     reciept.employee = employee;
 
+    //decrease customer pount
+    if (customer) {
+      const decreasePoint = reciept.rec_discount / 3;
+      customer.customer_point -= decreasePoint;
+      await this.customerRepository.save(customer);
+    }
     await this.recieptRepository.save(reciept);
     for (const rec of createRecieptDto.recieptDetails) {
       const recieptDetail = new RecieptDetail();
@@ -68,8 +74,7 @@ export class RecieptsService {
       await this.recieptDetailRepository.save(recieptDetail);
     }
     await this.recieptRepository.save(reciept);
-    //save customer
-    // await this.customerRepository.save(customer);
+
     return await this.recieptRepository.findOne({
       where: { rec_id: reciept.rec_id },
       relations: ['recieptDetail', 'customer', 'employee', 'store'],
