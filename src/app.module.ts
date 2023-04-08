@@ -37,6 +37,11 @@ import { CheckInOut } from './check_in_outs/entities/check_in_out.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
+      // host: 'db4free.net',
+      // port: 3306,
+      // username: 'wanons',
+      // password: 'password',
+      // database: 'coffee',
       host: 'angsila.informatics.buu.ac.th',
       port: 3306,
       username: 'guest01',
