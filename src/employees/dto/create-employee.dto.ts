@@ -8,7 +8,6 @@ export class CreateEmployeeDto {
   @IsNotEmpty()
   employee_login: string;
 
-  @IsNotEmpty()
   employee_password: string;
 
   @IsNotEmpty()
