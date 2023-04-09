@@ -38,4 +38,9 @@ export class ReportsController {
   GetDailySales() {
     return this.reportsService.getDailySales();
   }
+
+  @Get('/getCustomersRegister')
+  GetCustomersRegister() {
+    return this.reportsService.getCustomersRegister();
+  }
 }

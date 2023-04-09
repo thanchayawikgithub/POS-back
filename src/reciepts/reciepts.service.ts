@@ -5,7 +5,7 @@ import { Employee } from 'src/employees/entities/employee.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { RecieptDetail } from 'src/reciept_details/entities/reciept_detail.entity';
 import { Store } from 'src/stores/entities/store.entity';
-import { Like, MoreThan, Repository } from 'typeorm';
+import { Like, MoreThan, MoreThanOrEqual, Repository } from 'typeorm';
 import { CreateRecieptDto } from './dto/create-reciept.dto';
 import { UpdateRecieptDto } from './dto/update-reciept.dto';
 import { Reciept } from './entities/reciept.entity';
@@ -123,6 +123,16 @@ export class RecieptsService {
       where: { rec_id: id },
       relations: ['recieptDetail', 'customer', 'employee', 'store'],
     });
+  }
+
+  async findDailyReceipts() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const receipts = await this.recieptRepository.find({
+      where: { rec_createdAt: MoreThanOrEqual(today) },
+      relations: ['recieptDetail', 'customer', 'employee', 'store'],
+    });
+    return receipts;
   }
 
   async update(id: number, updateRecieptDto: UpdateRecieptDto) {

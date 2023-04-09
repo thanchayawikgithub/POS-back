@@ -58,15 +58,22 @@ export class ReportsService {
 
   async getDayOfWeekTotalSales() {
     const TotalSales = await this.dataSource.query(
-      'SELECT TimeDw.Date, TimeDw.DayOfWeek, SUM(FactDw.Fact_total_sales) AS Total FROM FactDw AS FactDw INNER JOIN TimeDw AS TimeDw ON FactDw.Time_id = TimeDw.Time_id GROUP BY TimeDw.DayOfWeek,TimeDw.Date ORDER BY TimeDw.Date;',
+      'SELECT TimeDw.DayOfWeek, SUM(FactDw.Fact_total_sales) AS Total FROM FactDw INNER JOIN TimeDw ON FactDw.Time_id = TimeDw.Time_id GROUP BY TimeDw.DayOfWeek ORDER BY CASE TimeDw.DayOfWeek WHEN "Monday" THEN 1 WHEN "Tuesday" THEN 2 WHEN "Wednesday" THEN 3 WHEN "Thursday" THEN 4 WHEN "Friday" THEN 5 WHEN "Saturday" THEN 6 WHEN "Sunday" THEN 7 END ASC',
     );
     return TotalSales;
   }
 
   async getDailySales() {
     const dailySales = await this.dataSource.query(
-      'SELECT TimeDw.Date, TimeDw.DayOfWeek, SUM(FactDw.Fact_total_sales) AS Total, COUNT(reciept.rec_id) AS Receipt FROM FactDw INNER JOIN TimeDw ON FactDw.Time_id = TimeDw.Time_id INNER JOIN reciept ON TimeDw.Time_original = CAST(reciept.rec_createdAt AS DATETIME) GROUP BY TimeDw.Date, TimeDw.DayOfWeek;',
+      'SELECT SUM(reciept.rec_total) AS total_sales, COUNT(reciept.rec_id) AS total_receipts FROM reciept WHERE DATE(reciept.rec_createdAt) = CURDATE() GROUP BY DATE(reciept.rec_createdAt);',
     );
     return dailySales;
+  }
+
+  async getCustomersRegister() {
+    const sumcustomers = await this.dataSource.query(
+      'SELECT (COUNT(CustomerDw.Customer_id))AS member,MONTH(CustomerDw.Customer_start_date) AS MONTH FROM CustomerDw GROUP BY MONTH;',
+    );
+    return sumcustomers;
   }
 }

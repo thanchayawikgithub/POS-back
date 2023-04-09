@@ -40,6 +40,11 @@ export class RecieptsController {
     return this.recieptsService.findOne(+id);
   }
 
+  @Get('/getDailyReceipts')
+  findDailyReceipts() {
+    return this.recieptsService.findDailyReceipts();
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateRecieptDto: UpdateRecieptDto) {
     return this.recieptsService.update(+id, updateRecieptDto);
