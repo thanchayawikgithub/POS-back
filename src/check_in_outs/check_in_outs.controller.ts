@@ -44,6 +44,11 @@ export class CheckInOutsController {
     return this.checkInOutsService.findOne(+id);
   }
 
+  @Get('/employee/:id')
+  findByEmpId(@Param('id') id: string) {
+    return this.checkInOutsService.findByEmpId(+id);
+  }
+
   @Patch(':id')
   async update(
     @Param('id') id: string,

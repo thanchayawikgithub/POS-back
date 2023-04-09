@@ -7,7 +7,7 @@ import { CreateCheckInOutDto } from './dto/create-check_in_out.dto';
 import { UpdateCheckInOutDto } from './dto/update-check_in_out.dto';
 import { CheckInOut } from './entities/check_in_out.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 import { Employee } from 'src/employees/entities/employee.entity';
 import { now } from 'moment';
 import { Salary } from 'src/salaries/entities/salary.entity';
@@ -51,6 +51,13 @@ export class CheckInOutsService {
     });
   }
 
+  findByEmpId(id: number) {
+    return this.checkInOutRepository.find({
+      where: { EmployeeId: id, status: 'checked out', SalaryId: IsNull() },
+      relations: ['employee'],
+    });
+  }
+
   async update(id: number, user: { employee_id: number }) {
     const employee = await this.employeeRepository.findOneBy({
       employee_id: user.employee_id,
@@ -63,7 +70,7 @@ export class CheckInOutsService {
     } else if (check_in_out.EmployeeId !== employee.employee_id) {
       throw new UnauthorizedException();
     }
-    check_in_out.cio_time_out = new Date('2023-04-08T11:41:09.524Z');
+    check_in_out.cio_time_out = new Date('2023-04-09T11:41:09.524Z');
     check_in_out.status = 'checked out';
 
     //calculate the difference in hours between createdAt and cio_time_out timestamps
