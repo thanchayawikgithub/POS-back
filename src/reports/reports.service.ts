@@ -58,7 +58,7 @@ export class ReportsService {
 
   async getDayOfWeekTotalSales() {
     const TotalSales = await this.dataSource.query(
-      'SELECT TimeDw.Date, TimeDw.DayOfWeek, SUM(FactDw.Fact_total_sales) AS Total FROM FactDw AS FactDw INNER JOIN TimeDw AS TimeDw ON FactDw.Time_id = TimeDw.Time_id GROUP BY TimeDw.DayOfWeek,TimeDw.Date;',
+      'SELECT TimeDw.Date, TimeDw.DayOfWeek, SUM(FactDw.Fact_total_sales) AS Total FROM FactDw AS FactDw INNER JOIN TimeDw AS TimeDw ON FactDw.Time_id = TimeDw.Time_id GROUP BY TimeDw.DayOfWeek,TimeDw.Date ORDER BY TimeDw.Date;',
     );
     return TotalSales;
   }
