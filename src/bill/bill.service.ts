@@ -55,10 +55,29 @@ export class BillService {
     });
   }
 
-  findAll() {
-    return this.billRepository.find({
-      relations: ['employee', 'bill_details'],
+  async findAll(query): Promise<Paginate> {
+    const page = query.page || 1;
+    const take = query.take || 10;
+    const skip = (page - 1) * take;
+    const keyword = query.keyword || '';
+    const orderBy = query.orderBy || 'bill_shop_name';
+    const order = query.order || 'ASC';
+    const currentPage = page;
+
+    const [result, total] = await this.billRepository.findAndCount({
+      relations: ['bill_details', 'employee'],
+      order: { [orderBy]: order },
+      take: take,
+      skip: skip,
     });
+
+    const lastPage = Math.ceil(total / take);
+    return {
+      data: result,
+      count: total,
+      currentPage: currentPage,
+      lastPage: lastPage,
+    };
   }
 
   findOne(id: number) {

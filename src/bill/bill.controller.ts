@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
+  Request,
 } from '@nestjs/common';
 import { BillService } from './bill.service';
 import { CreateBillDto } from './dto/create-bill.dto';
@@ -21,8 +23,8 @@ export class BillController {
   }
 
   @Get()
-  findAll() {
-    return this.billService.findAll();
+  findAll(@Query() query, @Request() req: any) {
+    return this.billService.findAll(query);
   }
 
   @Get(':id')
