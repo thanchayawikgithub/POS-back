@@ -15,4 +15,22 @@ export class ReportsController {
   getMatirial() {
     return this.reportsService.getMatirial();
   }
+
+  @Get('/getSalesQtyDrink')
+  getProductSalesQtyDrink() {
+    return this.reportsService.getProductSalesQtyDrink();
+  }
+  @Get('/getSalesQtyBakery')
+  getProductSalesQtyBakery() {
+    return this.reportsService.getProductSalesQtyBakery();
+  }
+  @Get('/getSalesQtyFood')
+  getProductSalesQtyFood() {
+    return this.reportsService.getProductSalesQtyFood();
+  }
+
+  @Get('/getCheckInOuts')
+  getCheckInOuts() {
+    return this.reportsService.getCheckInOuts();
+  }
 }

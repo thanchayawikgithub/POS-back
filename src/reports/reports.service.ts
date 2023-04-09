@@ -27,4 +27,32 @@ export class ReportsService {
     }
     return matList;
   }
+
+  async getProductSalesQtyDrink() {
+    const products = await this.dataSource.query(
+      'SELECT ProductDw.Product_id, ProductDw.Product_name AS Product_name, SUM(FactAgg.Fact_agg_quantity_sold) AS Drink_quantity_sold FROM FactAgg INNER JOIN ProductDw ON FactAgg.Product_id = ProductDw.Product_id WHERE Product_category = "drink" GROUP BY ProductDw.Product_category, ProductDw.Product_id;',
+    );
+    return products;
+  }
+
+  async getProductSalesQtyBakery() {
+    const products = await this.dataSource.query(
+      'SELECT ProductDw.Product_id,ProductDw.Product_name AS Product_name, SUM(FactAgg.Fact_agg_quantity_sold) AS Bakery_quantity_sold FROM FactAgg INNER JOIN ProductDw ON FactAgg.Product_id = ProductDw.Product_id WHERE Product_category = "bakery" GROUP BY ProductDw.Product_category, ProductDw.Product_id;',
+    );
+    return products;
+  }
+
+  async getProductSalesQtyFood() {
+    const products = await this.dataSource.query(
+      'SELECT ProductDw.Product_id,ProductDw.Product_name AS Product_name, SUM(FactAgg.Fact_agg_quantity_sold) AS Food_quantity_sold FROM FactAgg INNER JOIN ProductDw ON FactAgg.Product_id = ProductDw.Product_id WHERE Product_category = "food" GROUP BY ProductDw.Product_category, ProductDw.Product_id;',
+    );
+    return products;
+  }
+
+  async getCheckInOuts() {
+    const check_in_outs = await this.dataSource.query(
+      'SELECT CAST(CAST(cio_time_in AS DATETIME) AS DATE) AS DATE, employee.employee_name, CAST(cio_time_in AS TIME) AS Check_in_time, CAST(cio_time_out AS TIME) AS Check_out_time FROM employee INNER JOIN check_in_out ON check_in_out.EmployeeId = employee.employee_id;',
+    );
+    return check_in_outs;
+  }
 }
