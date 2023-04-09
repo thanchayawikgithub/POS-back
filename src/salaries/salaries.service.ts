@@ -62,11 +62,16 @@ export class SalariesService {
     }
     employee.salaries.push(salary);
     await this.employeeRepository.save(employee);
-    return savedSalary;
+    return this.salariesRepository.findOne({
+      where: { ss_id: salary.ss_id },
+      relations: ['checkinouts', 'employee'],
+    });
   }
 
   findAll() {
-    return this.salariesRepository.find({ relations: ['employee'] });
+    return this.salariesRepository.find({
+      relations: ['employee', 'checkinouts'],
+    });
   }
 
   findOne(id: number) {
