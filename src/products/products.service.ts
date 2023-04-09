@@ -58,7 +58,7 @@ export class ProductsService {
 
     const [result, total] = await this.productRepository.findAndCount({
       relations: ['category'],
-      where: { product_name: Like(`%${keyword}%`) },
+      where: { product_name: Like(`${keyword}%`) },
       order: { [orderBy]: order },
       take: take,
       skip: skip,

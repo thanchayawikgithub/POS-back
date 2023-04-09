@@ -10,6 +10,7 @@ import {
   UseInterceptors,
   UploadedFile,
   Res,
+  Request,
 } from '@nestjs/common';
 import { MaterialsService } from './materials.service';
 import { CreateMaterialDto } from './dto/create-material.dto';
@@ -45,10 +46,11 @@ export class MaterialsController {
     createMaterialDto.mat_image = file.filename;
     return this.materialsService.create(createMaterialDto);
   }
+
   @UseGuards(JwtAuthGuard)
   @Get()
-  findAll() {
-    return this.materialsService.findAll();
+  findAll(@Query() query, @Request() req: any) {
+    return this.materialsService.findAll(query);
   }
   @UseGuards(JwtAuthGuard)
   @Get(':id')

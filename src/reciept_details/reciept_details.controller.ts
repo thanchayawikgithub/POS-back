@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { RecieptDetailsService } from './reciept_details.service';
 import { CreateRecieptDetailDto } from './dto/create-reciept_detail.dto';
 import { UpdateRecieptDetailDto } from './dto/update-reciept_detail.dto';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { query } from 'express';
 
 @UseGuards(JwtAuthGuard)
 @Controller('reciept_details')

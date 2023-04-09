@@ -7,6 +7,8 @@ import {
   Param,
   Delete,
   BadRequestException,
+  Query,
+  Request,
 } from '@nestjs/common';
 import { CheckInOutsService } from './check_in_outs.service';
 import { CreateCheckInOutDto } from './dto/create-check_in_out.dto';
@@ -35,8 +37,8 @@ export class CheckInOutsController {
   }
 
   @Get()
-  findAll() {
-    return this.checkInOutsService.findAll();
+  findAll(@Query() query, @Request() req: any) {
+    return this.checkInOutsService.findAll(query);
   }
 
   @Get(':id')

@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  Request,
+  Query,
 } from '@nestjs/common';
 import { RecieptsService } from './reciepts.service';
 import { CreateRecieptDto } from './dto/create-reciept.dto';
@@ -24,8 +26,8 @@ export class RecieptsController {
   }
 
   @Get()
-  findAll() {
-    return this.recieptsService.findAll();
+  findAll(@Query() query, @Request() req: any) {
+    return this.recieptsService.findAll(query);
   }
 
   @Get('lastReceipt')

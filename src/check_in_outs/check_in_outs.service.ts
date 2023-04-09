@@ -37,11 +37,28 @@ export class CheckInOutsService {
     });
   }
 
-  findAll() {
-    return this.checkInOutRepository.find({
-      where: { status: 'checked out' },
+  async findAll(query): Promise<Paginate> {
+    const page = query.page || 1;
+    const take = query.take || 10;
+    const skip = (page - 1) * take;
+    const keyword = query.keyword || '';
+    const orderBy = query.orderBy || 'cio_date';
+    const order = query.order || 'DESC';
+    const currentPage = page;
+    const [result, total] = await this.checkInOutRepository.findAndCount({
       relations: ['employee'],
+      where: { status: 'checked out' },
+      order: { [orderBy]: order },
+      take: take,
+      skip: skip,
     });
+    const lastPage = Math.ceil(total / take);
+    return {
+      data: result,
+      count: total,
+      currentPage: currentPage,
+      lastPage: lastPage,
+    };
   }
 
   findOne(id: number) {

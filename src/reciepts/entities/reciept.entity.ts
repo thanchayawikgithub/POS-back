@@ -49,4 +49,11 @@ export class Reciept {
   customer: Customer;
   @ManyToOne(() => Employee, (employee) => employee.reciepts)
   employee: Employee;
+
+  // @Column()
+  // StoreId: number;
+  // @Column()
+  // CustomerId: number;
+  // @Column()
+  // EmployeeId: number;
 }

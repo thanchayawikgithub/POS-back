@@ -16,8 +16,29 @@ export class MaterialsService {
     return this.materialsRepository.save(createMaterialDto);
   }
 
-  findAll() {
-    return this.materialsRepository.find();
+  async findAll(query): Promise<Paginate> {
+    const page = query.page || 1;
+    const take = query.take || 10;
+    const skip = (page - 1) * take;
+    const keyword = query.keyword || '';
+    const orderBy = query.orderBy || 'mat_name';
+    const order = query.order || 'ASC';
+    const currentPage = page;
+
+    const [result, total] = await this.materialsRepository.findAndCount({
+      where: { mat_name: Like(`${keyword}%`) },
+      order: { [orderBy]: order },
+      take: take,
+      skip: skip,
+    });
+
+    const lastPage = Math.ceil(total / take);
+    return {
+      data: result,
+      count: total,
+      currentPage: currentPage,
+      lastPage: lastPage,
+    };
   }
 
   findOne(mat_id: number) {

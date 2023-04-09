@@ -5,7 +5,7 @@ import { Employee } from 'src/employees/entities/employee.entity';
 import { Product } from 'src/products/entities/product.entity';
 import { RecieptDetail } from 'src/reciept_details/entities/reciept_detail.entity';
 import { Store } from 'src/stores/entities/store.entity';
-import { MoreThan, Repository } from 'typeorm';
+import { Like, MoreThan, Repository } from 'typeorm';
 import { CreateRecieptDto } from './dto/create-reciept.dto';
 import { UpdateRecieptDto } from './dto/update-reciept.dto';
 import { Reciept } from './entities/reciept.entity';
@@ -44,6 +44,9 @@ export class RecieptsService {
     reciept.rec_total = createRecieptDto.rec_total;
     reciept.rec_received = createRecieptDto.rec_received;
     reciept.rec_changed = createRecieptDto.rec_changed;
+    // reciept.CustomerId = customer.customer_id;
+    // reciept.StoreId = store.store_id;
+    // reciept.EmployeeId = employee.employee_id;
     reciept.store = store;
     reciept.customer = customer;
     reciept.employee = employee;
@@ -81,10 +84,29 @@ export class RecieptsService {
     });
   }
 
-  findAll() {
-    return this.recieptRepository.find({
+  async findAll(query): Promise<Paginate> {
+    const page = query.page || 1;
+    const take = query.take || 10;
+    const skip = (page - 1) * take;
+    const keyword = query.keyword || '';
+    const orderBy = query.orderBy || 'rec_id';
+    const order = query.order || 'DESC';
+    const currentPage = page;
+
+    const [result, total] = await this.recieptRepository.findAndCount({
       relations: ['recieptDetail', 'customer', 'employee', 'store'],
+      // where: { customer },
+      order: { [orderBy]: order },
+      take: take,
+      skip: skip,
     });
+    const lastPage = Math.ceil(total / take);
+    return {
+      data: result,
+      count: total,
+      currentPage: currentPage,
+      lastPage: lastPage,
+    };
   }
 
   async findLast() {
