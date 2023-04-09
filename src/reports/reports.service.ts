@@ -51,8 +51,22 @@ export class ReportsService {
 
   async getCheckInOuts() {
     const check_in_outs = await this.dataSource.query(
-      'SELECT CAST(CAST(cio_time_in AS DATETIME) AS DATE) AS DATE, employee.employee_name, CAST(cio_time_in AS TIME) AS Check_in_time, CAST(cio_time_out AS TIME) AS Check_out_time FROM employee INNER JOIN check_in_out ON check_in_out.EmployeeId = employee.employee_id;',
+      'SELECT CAST(cio_time_in AS DATE) AS DATE, employee.employee_name, CAST(cio_time_in AS TIME) AS Check_in_time, CAST(cio_time_out AS TIME) AS Check_out_time FROM employee INNER JOIN check_in_out ON check_in_out.EmployeeId = employee.employee_id;',
     );
     return check_in_outs;
+  }
+
+  async getDayOfWeekTotalSales() {
+    const TotalSales = await this.dataSource.query(
+      'SELECT TimeDw.Date, TimeDw.DayOfWeek, SUM(FactDw.Fact_total_sales) AS Total FROM FactDw AS FactDw INNER JOIN TimeDw AS TimeDw ON FactDw.Time_id = TimeDw.Time_id GROUP BY TimeDw.DayOfWeek,TimeDw.Date;',
+    );
+    return TotalSales;
+  }
+
+  async getDailySales() {
+    const dailySales = await this.dataSource.query(
+      'SELECT TimeDw.Date, TimeDw.DayOfWeek, SUM(FactDw.Fact_total_sales) AS Total, COUNT(reciept.rec_id) AS Receipt FROM FactDw INNER JOIN TimeDw ON FactDw.Time_id = TimeDw.Time_id INNER JOIN reciept ON TimeDw.Time_original = CAST(reciept.rec_createdAt AS DATETIME) GROUP BY TimeDw.Date, TimeDw.DayOfWeek;',
+    );
+    return dailySales;
   }
 }

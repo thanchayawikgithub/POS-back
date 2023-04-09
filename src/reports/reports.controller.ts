@@ -29,8 +29,13 @@ export class ReportsController {
     return this.reportsService.getProductSalesQtyFood();
   }
 
-  @Get('/getCheckInOuts')
-  getCheckInOuts() {
-    return this.reportsService.getCheckInOuts();
+  @Get('/getDayOfWeekTotalSales')
+  GetDayOfWeekTotalSales() {
+    return this.reportsService.getDayOfWeekTotalSales();
+  }
+
+  @Get('/getDailySales')
+  GetDailySales() {
+    return this.reportsService.getDailySales();
   }
 }
