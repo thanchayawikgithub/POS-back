@@ -1,4 +1,4 @@
-import { UseGuards } from '@nestjs/common';
+import { Query, UseGuards } from '@nestjs/common';
 import {
   Controller,
   Get,
@@ -7,6 +7,7 @@ import {
   Patch,
   Param,
   Delete,
+  Request,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CustomersService } from './customers.service';
@@ -24,8 +25,8 @@ export class CustomersController {
   }
 
   @Get()
-  findAll() {
-    return this.customersService.findAll();
+  findAll(@Query() query, @Request() req: any) {
+    return this.customersService.findAll(query);
   }
 
   @Get(':id')
