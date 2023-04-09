@@ -87,7 +87,7 @@ export class CheckInOutsService {
     } else if (check_in_out.EmployeeId !== employee.employee_id) {
       throw new UnauthorizedException();
     }
-    check_in_out.cio_time_out = new Date('2023-04-09T11:41:09.524Z');
+    check_in_out.cio_time_out = new Date('2023-04-10T12:30:00.000Z');
     check_in_out.status = 'checked out';
 
     //calculate the difference in hours between createdAt and cio_time_out timestamps
