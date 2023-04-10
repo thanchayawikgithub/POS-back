@@ -60,8 +60,8 @@ export class BillService {
     const take = query.take || 10;
     const skip = (page - 1) * take;
     const keyword = query.keyword || '';
-    const orderBy = query.orderBy || 'bill_shop_name';
-    const order = query.order || 'ASC';
+    const orderBy = query.orderBy || 'bill_date';
+    const order = query.order || 'DESC';
     const currentPage = page;
 
     const [result, total] = await this.billRepository.findAndCount({
