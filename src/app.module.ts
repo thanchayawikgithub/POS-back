@@ -38,11 +38,6 @@ import { ReportsModule } from './reports/reports.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      // host: 'db4free.net',
-      // port: 3306,
-      // username: 'wanons',
-      // password: 'password',
-      // database: 'coffee',
       host: 'angsila.informatics.buu.ac.th',
       port: 3306,
       username: 'guest01',
